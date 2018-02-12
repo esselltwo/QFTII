@@ -1,0 +1,105 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 4, 25/01/2018}
+\me{I missed the first 20 minutes but I think it was just review of last time.}
+
+We previously computed
+\begin{align*}
+\left \langle \prod_1^n \sigma_+(x_i) \sigma_-(y_j) \right \rangle &= (-1)^n \left \langle \prod_1^n \bar \psi_+(y_i) \psi_+(x_i) \right \rangle\\
+&= \left ( \frac{1}{2 \pi} \right)^{2n} \left [ \frac{ \prod_{i < j} |x_i - x_j|^2 |y_i - y_j|^2 }{ \prod_{i,j} |x_i - y_j|^2 } \right ]^{g^2/4 \pi}.
+\end{align*}
+To get this to match up, we need $g^2/4 \pi = 1$, so now we just set $g = \sqrt{4\pi}$.
+The correlator above is supposed to be equal to
+\begin{align*}
+\left( \frac{1}{2 \pi}\right)^{2n} \left \langle \prod_{i = 1}^n \mu^2 V_+^{(R)}(x_i) V_-^{(R)}(y_i) \right \rangle,
+\end{align*}
+so we posit that
+\begin{align*}
+\sigma_\pm &= \mu V_\pm^{(R)}\\
+V_\pm^{(R)} &= \left( \frac{\Lambda}{\mu} \right)^{g^2/4 \pi} V_\pm
+\end{align*}
+so that
+\begin{align*}
+\bar \psi_- \psi_+ &= \frac{\Lambda}{2 \pi} e^{i \phi}\\
+\bar \psi_+ \psi_- &= \frac{\Lambda}{2 \pi} e^{-i \phi}
+\end{align*}
+
+Note that when defining $\varphi = \phi/g$ (choosing a canonical length scale) so that $\varphi = \varphi + 2 \pi$) we instead get $\bar \psi_- \psi_+ = e^{i \sqrt{4\pi} \varphi}$, etc.
+This convention is in some (most?) literature.
+More generally, the correspondence is
+\begin{align*}
+\bar \psi \slashed \partial \psi &\corresponds \frac{1}{2} (\partial_\mu \varphi)^2\\
+j^\mu \defeq \bar \psi \gamma^\mu \psi &\corresponds \frac{\varepsilon^{\mu \nu}}{\sqrt \pi} \partial_\nu \varphi\\
+\bar \psi \psi &\corresponds \Lambda \cos(\sqrt{4 \pi} \varphi)\\
+\bar \psi \gamma^0 \gamma^1 \psi &\corresponds \Lambda \sin(\sqrt{4 \pi} \varphi)
+\end{align*}
+\me{The last was written using $\gamma_* \defeq \gamma^0 \gamma^1$ but this notation was not used again.}
+
+\subsection*{Application one of bosonization}
+Often we want to add a self-interaction density $\rho(x) V(x,y) \rho(y)$ to a theory.
+This density $\rho$ is really $j^0$.
+We now get a term $j^0 V j^0$ that is quartic in $\psi$, but bosonization lets you turn this in a term like $(\partial_0 \varphi)^2$, which is quadratic and therefore can be computed using a Gaussian.
+
+\subsection*{Application two of bosonization}
+Consider a simple $(1+1)$-dimensional condensed matter system, say a lattice model with operators $\psi(n), \psi^\dagger(n)$ on each vertex, with $\{ \psi^\dagger(n), \psi(m) \} = \delta_{m+n}$. 
+(It's not immediately clear that this is relevant, since it's a non-relativistic system, but we'll get there.)
+We use a Hamiltonian of the form
+\[
+H = - \sum_{n \in \mathbb Z} \psi^\dagger (n) \psi(n+1) + \text{h.c.}
+\]
+The Fourier transform of this is
+\[
+H = - \int_{-\pi}^\pi \frac{dk}{2 \pi} (\cos k) \psi^\dagger \psi
+\]
+where these $\psi$s are actually the momentum-space versions.
+
+The ground state is a Fermi sea.
+It looks like a graph of $- \cos$ on $[-\pi, \pi]$, and the 1-d excitations live near the zeros, at $\pm \pi/2$.
+Zooming in it's a line with slope $c$, and the excitations move with $\omega = \pm ck$, where $k$ is the difference.
+These are like free Dirac fermions.
+
+In \emph{more} dimensions this doesn't quite work: you in general get a $(d-1)$-sphere of fermions, and for $d > 1$ this has infinitely many points, which is hard to deal with.
+
+\subsection*{Massless Schwinger model}
+Here the action is (expanding out the gauge derivative $\slashed D$) is
+\[
+S = \int d^2 x \left[ \bar \psi \slashed \partial \psi + A_\mu j^\mu - \frac{1}{4 e^2} F_{\mu \nu}F^{\mu \nu}\right],
+\]
+where we put the electric charge $e$ with the $F^{\mu \nu}$ term to match the usual conventions for a Yang-Mills theory.
+This theory is potentially complicated because of the interaction terms: you get \emph{lots} of Feynman diagrams.
+However there are simplification.
+
+In two dimensions, the $\beta$ function is dimensionful, so the theory is superrenormalizable, i.e.~free in the UV limit.
+Another interesting feature is that there are zero polarizations (compare $3-1 = 2$ in reality), bt least classically.
+When we quantize we'll get new things and the theory won't be trivial.
+
+To solve the theory we use the correspondence $\psi \bar \psi \corresponds \varphi$ \me{the $\psi$ term looks wrong here} to change the action to
+\[
+S = \int d^2 x \left [ \frac{1}{2} (\partial_\mu \varphi)^2 + \frac{\partial_\mu \varphi}{\sqrt \pi} \partial^\mu f + \frac{1}{2e^2} \partial^2 f \partial^2 f\right],
+\]
+where we have written $A_\mu = \partial_\mu \alpha + \varepsilon_{\mu \nu} \partial^\mu f$ and (locally) gauge transformed $\alpha = 0$.
+We work in Minkowski signature, so that $\varepsilon_{01} = 1$, $\eta_{00} = 1$, $\eta_{11} = -1$, $\varepsilon^{01} = -1$, and $\varepsilon_{\mu \nu} \varepsilon^{\nu \sigma} = \delta_\mu^{\phantom{\mu} \sigma}$.
+
+Notice that we have turned a cubic self-interaction into a quadratic term!
+This is a \emph{free} bosonic theory.
+
+Actually, we should also integrate by parts to change the middle term to $- \frac{\varphi}{\sqrt \pi} \partial^2 f$, so that
+\begin{align*}
+S &= \int d^2 x \left[ - \frac{1}{2 \pi} \partial_\mu f \partial^\mu f + \frac{1}{2e^2} \partial^2 f \partial^2 f\right]\\
+&= \int d^2 x \left[ \frac{1}{2 \pi} A_\mu A^\mu + \frac{1}{2e^2} A_\mu \partial^2 A^\mu\right]
+\end{align*}
+\me{I don't really get what's happening here.}
+
+The result is a theory of a propagating scalar with
+\[
+\left \langle A_\mu A_\nu \right \rangle = \left( \eta_{\mu \nu} - \frac{p_\mu p_\nu}{p^2} \right) \frac{1}{p^2 - e^2/\pi}
+\]
+with corresponding dispersion relation $\omega^2 = k^2 + e^2/\pi$.
+The two-point function has no cuts, just poles, so we get \emph{confinement:} there are no asymptotic states with charge.
+
+``Spontaneous breaking of chiral symmetry'' \me{is a phrase stated at the end of class.
+It may be related to
+\[
+\langle \sigma_\pm \rangle = \frac{\Lambda}{2 \pi} \langle e^{\pm i \theta} \rangle
+\]
+and a new scalar field $\theta$.
+Apparently in the above the $\Lambda$s cancel.}

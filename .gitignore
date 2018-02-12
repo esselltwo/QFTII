@@ -1,0 +1,9 @@
+# LaTeX auxillary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+
+* Main pdf output
+main.pdf

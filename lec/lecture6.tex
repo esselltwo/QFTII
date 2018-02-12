@@ -1,0 +1,124 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 6, 01/02/2018}
+Today we discuss Yang-Mills theories, for now in Minkowski spacetime of $3+1$ dimensions.
+
+In 1954 QED was figured out, which is a theory of a potential $A_\mu$ and fields $\psi$, $\phi$, etc.
+It was very succesful, and used an \emph{abelian} $\grp U (1)$ gauge symmetry.
+Attempts to generalize this to non-abelian gauge groups were considerably more difficult, and this is what we explain now.
+
+Recall that for a scalar field $\phi(x)$, gauge invariance requires us to promote $\partial_\mu$ to a \emph{covariant derivative}
+\[
+D_\mu(A) \defeq \partial_\mu - i e A_\mu.
+\]
+This results in a $U(1)$ invariant theory and automatically includes self-interactions of the gauge field $A_\mu$.
+
+We now promote $\phi$ to a vector $\phi^i$ and the symmetry group to $\grp U(N)$ (or some other compact Lie group $G$.)
+Now the transformation $\phi(x) \mapsto U \phi(x)$ is a symmetry of the action
+\[
+S = \int \partial \bar \phi \partial \phi \pm m^2(\bar \phi \phi) + \frac{\lambda}{\text{numerical constant}} (\bar \phi \phi)^2
+\]
+This is an invariant ``global'' symmetric because it acts on all of spacetime in the same way.
+It could be ``broken,'' which means that the vacuum state is not preserved by the charges ($Q \left | 0 \right \rangle \ne 0$.)
+If it isn't, we get an actual symmetry acting on the states.
+
+We now want to ``gauge'' this symmetry by promoting it to a ``local'' symmetry
+\[
+\phi(x) \mapsto U(x) \phi(x)
+\]
+For this to work we need a \emph{covariant} derivative.
+Observe that
+\[
+\partial_\mu(U \phi) = U \partial_\mu \phi + (\partial_\mu U) \phi = U(\partial_\mu \phi + (U^{-1} \partial_\mu U)) \phi,
+\]
+so we postulate
+\[
+D_\mu \phi^i(x) = \partial_\mu \phi^i - i A_\mu^{ij}(x) \phi^j(x)
+\]
+where now $A_\mu$ is ``matrix-valued,'' taking values in the adjoint representation of the gauge group $G$, which is to say in its Lie algebra $\lie g$.
+Notice that we've absorbed the charge into $A_\mu$, which is more convenient right now, although we'll want it back when we do perturbative calculations.
+In this convention, $[A_\mu] = [\partial_\mu] = 1$, which is convenient.
+
+\me{Here there was a brief discussion of Lie theory: $\lie g = T_eG$, the exponential map, the Killing form, etc.
+I already knew about this so I didn't write it down, but there was a mention of Zee's book on group theory as a good reference.}
+We will only work with compact gauge groups $G$ for now, although we might allow non-compact ones later when we talk about Chern-Simons theories.
+Note that physicists frequently forget about $\lie g$ and just call everything $G$.
+We work in a basis $T^a$ of $\lie g$ that diagonalizes the Killing form.
+
+Now, under the group transformation $e^{i \theta^a(x) T^a}$ the gauge field transforms as
+\[
+A_\mu \mapsto A_\mu + i \theta^a [T^a, A_\mu] + \partial_\mu \theta^a T^a.
+\]
+In the previous case of QED the middle term vanishes.
+There are some divergent conventions here with the factors of $i$.
+It has to do with what goes in the exponential: physicists like an extra factor of $i$ so that the Lie algebra is Hermitian.
+Therefore in physics
+\[
+[T^a, T^b] = i f^{ab}_{\phantom{ab}c} T^c,
+\]
+while in math there's no $i$.
+In any case, the structure constants are antisymmetric in the first two indices.
+In the physics convention, note that we can write
+\[
+A_\mu^a \mapsto A_\mu^a + \partial_\mu \theta^a - f^{abc} \theta^b A_\mu^c
+\]
+In fact, for \emph{compact} Lie groups $f^{abc}$ is always fully antisymmetric.
+In the particularly simple case of $\grp{SU}(2)$, $f^{abc} = \varepsilon^{abc}$.
+
+We call $A_\mu^a$ a ``gauge field.''
+Really, it's a local representation of a connection on a $G$-principal bundle.
+\me{Here there was a discussion of $G$-principle bundles that I again didn't write down.}
+Note that we treat gauge symmetries rather differently than regular ones: they are \emph{redundancies} in our descriptions of the fields, not transformations between physically different states.
+
+Another change: In QED, $F_{\mu \nu}$ was invariant.
+In general it will just be covariant:
+\[
+F_{\mu \nu} \mapsto U^{-1}F_{\mu \nu} U
+\]
+If we view $A = A_\mu dx^\mu$ as a matrix-valued $1$-form, then it transforms as
+\[
+A \mapsto U AU^{-1} + U dU^{-1},
+\]
+and we define $F$ by
+\[
+F = dA + A \wedge A.
+\]
+Recall of course that the wedge product of Lie-algebra valued forms involves using the bracket to contract things.
+Then in terms of components,
+\begin{align*}
+F^{\text{math}}_{\mu \nu} &= \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]\\
+F^{\text{physics}}_{\mu \nu} &= \partial_\mu A_\nu - \partial_\nu A_\mu - i[A_\mu, A_\nu]
+\end{align*}
+Before adding in matter, our Yang-Mills action is now
+\[
+S_{\text{YM}} = \frac{1}{-2g^2_{\text{YM}}} \int d^4x\, \tr(F_{\mu \nu} F^{\mu \nu})
+\]
+Here the trace is really the Killing form, with the choice $\tr(T^a T^b) = \delta^{ab}/2$.
+This is also related to the normalization of the coupling constant.
+Even before adding in matter this theory is self-interacting: we get diagrams like
+\begin{center}
+\feynmandiagram [inline =(e.base)] {
+    a -- [photon] e,
+    b -- [photon] e,
+    c -- [photon] e,
+};
+and 
+\feynmandiagram [inline =(e.base), horizontal = a to b] {
+    a -- [photon] e,
+    b -- [photon] e,
+    c -- [photon] e,
+    d -- [photon] e,
+};
+\end{center}
+
+Recall that in QED the Gaussian term wasn't invertible.
+Therefore, to get the propagator we just guessed that
+\[
+\left \langle A_\mu A_\nu \right \rangle \sim \frac{\eta_{\mu \nu}}{p^2 + i \varepsilon}
+\]
+and checked that it worked.
+In fact, it only does because the matter fields are coupled to a conserved current: if not we'd need an extra term $p_\mu p_\nu/p^2$ in the numerator.
+More generally, this only works because the QED $S$-matrix is unitary.
+
+In Yang-Mills the $S$-matrix is \emph{not} unitary, so this method doesn't work.
+This was a major theoretical problem.
+It was eventually solved by Faddeev and Popov by carefully working through the Hamiltonian formalism.

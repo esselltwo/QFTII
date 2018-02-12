@@ -1,0 +1,77 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 5, 30/01/2018}
+We discussed the bosonization correspondence from before, and returned to the chart of relativistic CFTs with ``one degree of freedom'' in $1+1$ dimensions.
+Main new comment was that it follows an ADE classification: the two axes are the A and D and the E refers to the three isolated theories.
+The reason for this has to do wtih classifying the discrete subgroups of $\operatorname{SU}(2)$.
+
+\subsection*{Thirring and sine-Gordon}
+``Sine-Gordon'' is a pun on ``Klein-Gordon'' since there's a (co)sine in it.
+The action is
+\[
+S_{\text{SG}} = \int d^2x \left [ \frac{1}{2} \partial_\mu \varphi \partial^\mu \varphi + \frac{m^4}{\lambda} \cos\left ( \frac{\sqrt \lambda}{m} \varphi\right ) \right ]
+\]
+Here $m$ is the mass and $\lambda$ is the self-coupling.
+The $m^4$ is the right thing to do for a theory in $1+1$ dimensions.
+Sometimes there's a $1$ subtracted from the cosine to make the theory have $\varphi = 0$ give zero energy, but absolute energy levels don't matter so we drop it.
+This theory is integrable both clasically and on a quantum level.
+
+The equation of motion is
+\[
+\partial^\mu \partial_\mu \varphi + \frac{m^2}{\lambda} \sin \left(\frac{\sqrt \lambda }{m} \varphi \right)
+\]
+which has infinitely many zero-energy solutions because of the periodicity.
+We could do perturbative expansion around each one and they wouldn't interact, because it's not possible to jump between wells like that in infinite space.
+\me{There was a comment about that being true clasically but not when we quantize but I'm not sure what the actual statement is.}
+
+Instead we quantize a \emph{soliton}, which for our purposes means a thing that doesn't dissipate, usually associated to a conserved quantity.
+Once we have one we can boost it to any velocity \me{and quantize around these.}
+
+Define $\bar x = mx$, $\bar t = mt$, $\bar \varphi = \frac{\sqrt \lambda}{m} \varphi$.
+We have symmetries $\bar \varphi \mapsto - \bar \varphi$, $\bar \varphi \mapsto \varphi + 2\pi$.
+If $\bar \varphi (- \infty ) = 2 \pi N_1$ and $\bar \varphi(\infty) = 2 \pi N_2$, then we get a ``topological charge''
+\[
+Q = N_1 - N_2 = \frac{1}{2 \pi} \int d \bar x \partial_{\bar x} \bar \varphi \sim \int d \bar x j^0
+\]
+Note that $\varphi \mapsto \varphi + c$ is \emph{not} a symmetry of the theory.
+
+For $Q = \pm 1$ we get soultions
+\[
+\bar \phi (x) = \pm 4 \operatorname{atan} e^{-\bar x - \bar x_0}
+\]
+which we call solitons and antisolitions.
+\me{(Many of the formulas here may be wrong.)}
+They have scattering
+\[
+4 \operatorname{atan} \left( \frac{\sinh(u \bar t/ \sqrt{1-u}) }{u \cosh(\bar x \sqrt{1-u^2}) } \right).
+\]
+\me{Under $u \mapsto iv$??} we get ``breather'' or ``doublet'' solutions
+\[
+\bar \phi = 4 \operatorname{atan}\left[ \frac{\sin(\pi \bar t/\sqrt{1+v^2})}{v \cosh (\bar x /\sqrt{1+v^2})}\right]
+\]
+Also, the energy of the classical solution is $8m^3/\lambda$, while the energy of the quantum solution is $8m^3/\lambda + m/\pi + \mathcal{O}(\lambda).$ \me{There was a comment about the importance of that that I missed.}
+
+We return to the original model to bosonize. With $\phi = \frac{\sqrt{\lambda}}{m} \varphi$, we have
+\[
+S_{\text{SG}} = \frac{m^2}{\lambda} \int \frac{1}{2} (\partial_\mu \phi)^2 + m^2 \cos \phi
+\]
+The coupling constant $g$ from before is now usually called $\kappa$, with $\kappa^2 = \lambda/m^2$.
+The proof \me{of the following (?)} is careful and order-by-order but we don't discuss it.
+
+The Thirring model is
+\[
+S_T = \int d^2 x \left[\bar \psi (\slashed \partial + m_F) \psi - \frac{1}{2} g J_\mu J^\mu \right].
+\]
+When bosonizing: the $\slashed \partial$ term becomes $(\partial_\mu \varphi)^2$, the $m_F$ term becomes $\Lambda \cos \varphi$, and the final term gets two $\varepsilon^{\mu \nu}$s, which combine to give an $\eta^{\mu \nu}$, so it becomes $(\partial_\mu \varphi)^2 g / \pi$.
+We have thus shown that
+\[
+1 + \frac{g}{\pi} = \frac{4\pi}{\kappa^2}
+\]
+
+Implications:
+\begin{itemize}
+    \item The fermion mass $m_F$ is zero \me{(?)}
+    \item The sine-Gordon theory can be shown to be non-renormalizable, so we've shown that Thirring isn't either, which would have been much harder directly.
+    \item The fermion $\psi$ corresponds to the soliton in the sine-Gordon theory.
+\end{itemize}
+
+In the next lecture, we will discuss quantization of (non-abelian) Yang-Mills theories.

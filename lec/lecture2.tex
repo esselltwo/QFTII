@@ -1,0 +1,137 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 2, 18/01/2018}
+\subsection*{Introduction}
+\me{Throughout there was a lot of historiographic (what word is that for physics?) discussion that I didn't write down.}
+
+Main topic for today is \emph{bosonization.}
+We focus on $1+1$ relativistic dimensions although there are generalizations to other cases.
+It is an equivalence between (certain classes of) bosonic and fermionic QFTs.
+
+How is this possible, since bosonic theories have boson terms in their Lagrangians and fermionic ones have fermion terms?
+Because theories aren't actually determined by their Lagrangians, but by their algebras of operators/correlation functions.
+
+Bosonization is an example of a \emph{duality,} which are good for dealing with nonperturbative phenomena, especially to switch between strong and weak coupling.
+Today we just work with free theories, however.
+
+We \emph{will} turn on a self-coupling, and this turns our equivalence of free theories into ``sine-Gordon,'' which has a soliton excitation, \me{whatever that is.}
+This is related to massless Schwinger theories (QED with massless fermions in $1+1$ dimensions.)
+
+Apparently one of the people who worked on this was Elliott Lieb \me{who is the same person as the Temperley-Lieb algebra.}
+A condensed matter application is to ``Luttinger liquids.''
+
+\subsection*{The theory}
+We work a free bosonic scalar field theory of a real-valued field $\phi$ with action
+\[
+S(\phi) = \int d^D x \left [ \frac{1}{2} (\partial \phi)^2 + V(\phi) \right]
+\]
+Here the integration measure is Wick rotated to Euclidean signature, even if we are interested in other signatures.
+$V(\phi)$ is a potential term that includes masses, self-interactions, etc.
+For now $V = 0$.
+The partition function is
+\[
+\mathcal{Z} = \int \mathcal{D} \phi(x) e^{-S(\phi)}
+\]
+where the phase of the action in the integrand is chosen to make things converge nicely, and is the correct choice. \me{Apparently this was discussed either in the first lecture or last semester?}
+
+The case $D = 2$ is special.
+To see why, observe that the correlator
+\[
+\left \langle \phi(x) \phi(0) \right \rangle = \frac{\Gamma\left(\frac{D-2}{2}\right)}{\left( 4\pi\right)^{D/2}} \left( \frac{1}{x^2} \right)^{\frac{D-2}{2}}
+\]
+behaves poorly as $D \to 2$.
+We will need both a UV and an IR regulator to fix this.
+
+To derive the previous expression:
+\begin{align*}
+\int \frac{d^D k}{(2\pi)^D} \frac{e^{ikx}}{k^2} &= \int_0^\infty \int \frac{d^D k}{(2\pi)^D} \exp{-sk^2 + ikx}\\
+&= \int_0^\infty ds \left( \sqrt{\frac{\pi}{s}} \right)^D \frac{\exp(-x^2/4s)}{(2\pi)^D}\\
+&\me{\text{(change variables)}}\\
+&= \frac{1}{2^D \pi^{D/2}} \int_0^\infty ds \;s^{D/2-1} \exp(-sx^2/4)\\
+\end{align*}
+which is equal to the original expression once you write it in terms of the gamma function.
+
+This doesn't work for $D=2$.
+To deal with that case we introduce an IR mass regulator $m_0 \ne 0$.
+We also change the theory by making it $\phi$-periodic, i.e.~having $\phi$ take values in a circle with radius $R$.
+This means that $\phi = \phi+ 2\pi$ and the action becomes
+\[
+S(\phi) = \frac{1}{g^2}\int d^2 x \left[ \frac{1}{2}(\partial \phi)^2 + \frac{1}{2} m_0 \phi^2 \right]
+\]
+where the ``coupling constant'' $g = R$ is the radius of the circle.
+(It's still called a coupling constant even though it's not actually coupling anything.)
+
+Now, the propagator is
+\begin{align*}
+G(\phi, m_0^2) &= g^2 \int \frac{d^2 k}{(2\pi)^2} \frac{e^{ikx}}{k^2 + m_0^2}\\
+&\approx g^2\left( - \frac{1}{2\pi} \log m_0 + \text{const.} + \mathcal{O}(m_0|x|) \right)
+\end{align*}
+where $\approx$ means it's an asymptotic expansion.
+We get a log divergence in $m_0$.
+How do we deal with it?
+
+One consequence: a massless field in $1+1$ dimensions doesn't exist as a quantum object, because of this IR divergence.
+This means that there is never any spontaneous symmetry breaking in $1+1$ relativistic dimensions.
+This result is the ``Coleman-Mermin-Wagener'' (sometimes also ``Hohenberg'') theorem.
+It's really just the converse of Goldstone's Theorem, which says that in a relativistic QFT, if a continuous global internal (i.e.~not spacetime) symmetry is broken, there is a massless mode $\phi$.
+In fact, such breaking and modes are in 1-1 correspondence.
+
+If $\phi$ doesn't exist, how is this an interesting theory?
+Well, we don't care about the Lagrangian, just the observables.
+Even though correlators like $\langle \phi \phi \rangle$ are not well-defined, we still have things like
+\begin{itemize}
+    \item $\partial_\mu \phi$ and $\epsilon^{\mu \nu} \partial_\nu \phi$, which have to do with the conserved current of the $U(1)$ symmetry
+    \item $V_\pm = e^{\pm i \phi}$, so-called ``vertex operators''
+\end{itemize}
+In particular, we can compute
+\[
+\left \langle V_+(x_1) \cdots V_=(x_n) V_-(y_1) \cdots V_-(y_m) \right \rangle
+\]
+at least if it exists when $m_0 \to 0$.
+In order to do this we'll need to introduce a UV regulator $\Lambda$ and a corresponding renormalization group scale $\mu$.
+
+For now, focus on the simple case $\langle V_+(x_1) V_-(x_2) \rangle$.
+\me{I don't quite follow the details of the next calculation.}
+This is a special case of
+\[
+\left \langle \exp \left( i \int d^2x\; J(x) \phi(x) \right) \right \rangle
+\]
+for some sourcelike term $J(x)$.
+In this case it's $\delta^2(x_1) - \delta^2(x_2)$, so this can be rewritten using the propagator $G$ as
+\[
+\exp\left( -\frac{1}{2} \int d^2x d^2y\; J(x) G(x,y) J(x \me{\text{ or $y$?}})\right)
+\]
+where $J(x) = \delta(x_1) - \delta(x_2)$.
+
+In this case this gives
+\[
+\langle V_+(x_1) V_-(x_2) = \exp\left( -\frac{1}{2} \cdot 2 G(0,m_0^2) + \frac{1}{2} \cdot 2 G(x_1 - x_2,m_0^2)\right)
+\]
+The first term is a problem on its face, because we'd get a UV divergence as $x \to 0$ in $\log m_0|x|$.
+To fix this, we introduce a lattice spacing $a = 1/\Lambda$, which replaces the zero.
+
+Only keeping the logarithmic terms, we then have
+\begin{align*}
+    \langle V_+(x_1) V_-(x_2) &= \exp \left( \frac{g^2}{2\pi} \left[ \log(m_0/\Lambda) - \log(m_0|x_1 - x_2|) \right]\right)\\
+    &= \left( \frac{1}{|x_1 - x_2| \Lambda} \right)^{g^2/2\pi}
+\end{align*}
+The naive (``engineering'') scaling dimensions of of $\phi$ and $e^{i \alpha \phi}$ (for $\alpha \in \mathbb Z$) are both zero, which would cause problems.
+Here quantum fluctuations save us by changing the scaling dimension to $g^2 /4\pi$.
+This is an ``anomalous dimension $\gamma$.''
+
+Now to deal with the UV cutoff.
+Really the $V_\pm$ are the bare operators, which need to be renormalized.
+We rewrite
+\[
+\left( \frac{1}{|x_1 - x_2| \Lambda} \right)^{g^2/2\pi} = \left( \frac{1}{\mu|x_1 - x_2| } \right)^{g^2/2\pi} \left( \frac{\mu}{\Lambda} \right)^{g^2/2\pi}.
+\]
+which helps because we can now define (notation used for historical reasons) $\sqrt{Z} V_{\pm}^R = V_\pm$, where
+\[
+\sqrt{Z} = \left( \frac{\mu}{\Lambda} \right)^{g^2/4\pi}.
+\]
+Now
+\begin{align*}
+\langle V^R_+ V^R_- \rangle = \left( \frac{1}{\mu |x_1 - x_2|} \right)^{g^2/2\pi}
+\end{align*}
+with $[V_\pm^R] = g^2 /4\pi \ne 0$.
+We can now compare this to the free Dirac theory.
+

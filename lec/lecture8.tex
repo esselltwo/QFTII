@@ -1,0 +1,110 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 7, 08/02/2018}
+Today we discuss Hamiltonian quantization of Yang-Mills theories.
+Why do we focus on the Hamiltonian picture?
+Because it's easier to make sense of the path integral/partition function:
+\begin{align*}
+\mathcal Z &= \int \mathcal D q(t) \exp \left[i \int dt\, \mathcal{L}(q, \dot q, t)\right]\\
+&= \int \mathcal D p(t) \mathcal D q(t) \exp \left[ i\int dt\, p\dot q- H \right]
+\end{align*}
+where heuristically $\mathcal L = p \dot q - H.$
+The advantage here is that we have a canonical measure on the phase space, namely the standard symplectic form \me{for a cotangent bundle.}
+
+In our case, we have
+\begin{align*}
+\mathcal L = E_k^a \partial_0 A_k^a - h(E_k , A_k) + A_0^a C^a
+\end{align*}
+where $E_k^a, A_k^a \sim p_i, q^i$ and $h = \frac{1}{2} [(E)^2 + (G)^2]$.
+We can think of the $C^a$ as constraints.
+The reference on quantization with constraints is Teitelboim \& Henneaux.
+
+Re call that we are in a $2n$-dimensional phase space $\Gamma$ with action
+\[
+S = \int \sum_i p_i q^i - h(p,q) - \sum_{\alpha = 1}^m \varphi^\alpha(p,q)
+\]
+where $m < n$ because each one will kill two degrees of freedom.
+These are ``first-class constraints,'', which are easier to deal with than other situations.
+
+To quantize this: \me{(I think I missed many of the details, so this section may contain more errors than usual.)}
+\begin{enumerate}
+    \item Pick $m$ additional conditions (complimentary to the $\varphi$)
+    \[
+    \chi^\alpha(p,q) = 0
+    \]
+    satisfying
+    \[
+    \det [ \{ \varphi^\alpha, \chi^\beta\}]_{\alpha \beta} \ne 0
+    \]
+    and $\{\chi^a, \chi^b\} = 0.$
+    \item Set $\chi^\alpha = 0$, $\varphi^\alpha = 0$ to get a $2(n-m)$-dimensional space $\Gamma^*$.
+    \item Find canonical coordinates $p^*, q^*$ on $\Gamma^*$ satysifying
+    \begin{align*}
+    q &= (\chi^\alpha, q^*)\\
+    p &= (p^\alpha, p^*)
+    \end{align*}
+    where the $p^\alpha$ are canonically conjugate to the $\chi^\alpha$.
+    We then define
+    \[
+    h^*(p^*,q^*) = h(p,q)|_{\varphi = 0, \chi = 0, p^\alpha = p^\alpha(p^*,q^*)}
+    \]
+\end{enumerate}
+
+\me{There was now a discussion of the equivalence of the new and the original equations of motion, but I didn't follow it and I think it was farily incomplete anyway.
+I guess we'll just have to take it on faith.}
+
+We can now interpret the path integral for the original system $\Gamma$ as the path integral for the constrained one $\Gamma^*$:
+\[
+\mathcal Z = \int \mathcal D p^*(t) \mathcal D q^* (t) \exp \left[ i \int p^* \dot q^* - h^*(p^*,q^*)\right].
+\]
+We claim that this is the same as
+\[
+\mathcal Z = \int \mathcal D p(t) \mathcal D q(t) \mathcal D \lambda(t) \prod_{t, \alpha} \delta(\chi^\alpha) \prod_t \det \left[\{ \varphi_\alpha , \varphi_b\} \right] \exp \left[ i \int p \dot q - h(p,q) - \lambda^\alpha \varphi(p,q) \right].
+\]
+The critical peice here is the determinant term, usually called a \emph{Faddeev-Popov determinant.}
+For a long time people left this out when trying to quantize non-abelian Yang-Mills and it caused lots of problems.
+It's essentially the Jacobian of the coordinate change.
+
+\begin{proof}
+The idea is to integrate out the $\lambda(t)$.
+This has something to do with passing to a different system of coordinates?
+All we need is to show that
+\[
+\delta(\chi^\alpha)\prod \det[\{\varphi_\alpha,\varphi_\beta\}] = \prod \delta(q_\alpha) \delta(p_\alpha - p_\alpha(p^*,q^*))
+\]
+and while this apparenlty seemed obvious when the notes were written, why this is actually true wasn't apparent. \me{We might fix this later?}
+\end{proof}
+
+Now we apply this to Yang-Mills (which we know from last time is of the first class.)
+In order to do this we will have to temporary break Lorentz symmetry in order to gague fix.
+We choose Coulomb gauge $\partial_k A_k = 0$, although other choices are reasonable.
+We can check that
+\begin{align*}
+\{ \delta_k \mathcal A_k, \partial_i \mathcal A_i\} &= 0\\
+\{C^a(\vc x), \partial_k A_k^a(\vc y) \} &= - \partial_k \left[\partial_k \delta^{ab} - g f^{abc} A^c_k(\vc x) \right]\delta(\vc x - \vc y)
+\end{align*}
+We call the operator in brackets \me{(maybe also with the $\partial_k$ on the left?)} $M_C[\mathcal A]$.
+It is the critical part.
+In the abelian case it's just the Laplacian, but since $G$ is non-abelian the second term doesn't vanish.
+
+Now the partition function is
+\[
+\mathcal Z = \int \mathcal D A_\mu^a(x) \exp \left[ i \int d^4x \frac{1}{8} \tr\left(\mathcal F_{\mu \nu} \mathcal F^{\mu \nu}\right )\right]\prod \delta(\partial_k \mathcal A_k) \prod \det M_C[\mathcal A].
+\]
+How do we compute this determinant?
+We introduce ``ghost'' and ``antighost'' variables $c(x)$, $b(x)$ (which is sometimes called $\bar c(x)$ because in a YM context it's the complex conjugate.)
+These are ``Grassman'' variables that anticommute.
+The point of doing this is that now
+\[
+\det M_C[\mathcal A] = \int \mathcal D c(x) \mathcal D b(x) \exp \left[ i \int d^4x\, b(x) M_C[\mathcal A]c(x) \right].
+\]
+
+Side note:
+A simple analogy to our situation is the evaluation of the Gaussian integral
+\[
+\int dx\,dy\; e^{-(x^2 + y^2)} = \frac{1}{2\pi} \int dr \; r e^{-r^2}
+\]
+We can interpret this as the ``gauge fixing of a $U(1)$-invariant integrand,'' so that the denominator is the volume of the gauge group.
+However, the inclusion of the Jacobian factor here is very important; you can't just divide by the volume.
+\me{Also, the factor isn't $1/2 \pi$, it's $1/2$, so I'm not sure what mistake I made.
+There was also a comment about how you can't just divide by $\int dy$ since that diverges.
+The point might have been choosing the right coordinates?}

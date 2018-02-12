@@ -1,0 +1,77 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 7, 06/02/2018}
+We continue with the quantization of Yang-Mills theories.
+\me{While reviewing some notation, there was a discussion of the classification of these theories that I missed.
+A big part of the classification is just the classification of semisimple Lie groups.
+There was also some mention of ``topological terms'' like $\tr(F \wedge F).$}
+
+Physicists confusingly sometimes call $\grp U(1)$ a simple Lie group and sometimes don't.
+\me{I asked, and the lecturer had never heard of ``reductive,'' which is the correct term.}
+We will not.
+There is a classification theorem: all semisimple Lie groups \me{(which is defined to include simply connected)} are products of simple ones, which are in turn classified in series $A_n, B_n, C_n, D_n$ and the exceptional cases $E_6, E_7, E_8$, $F_4$, $G_2$.
+\me{There was more discussion of this and some explanation, but I'm familiar already so I didn't write it down.
+The reccommended physics reference is Zee's group theory book.
+For math I like Fulton and Harris.}
+
+To discuss quantization we follow Faddeev and Slavnov.
+There is a path integral
+\[
+\mathcal Z = \int \mathcal D A_\mu \exp \left[\frac{i}{8g^2} \int \tr F_{\mu \nu}F^{\mu \nu}\right],
+\]
+which as usually completely fails to converge.
+What this actually means is a shorthand for quantization in the Hamiltonian formalism.
+Of course, there's a problem because we want to do Lagrangian things, which requires the ability to guess the answer.
+This is part of the reason figuring out non-Abelian gauge theory was difficult.
+
+From now on, we distinguish $\mathcal A_\mu \defeq A_\mu^a T^a$ from regular $A_\mu$, and similarly for $\mathcal F_{\mu \nu}.$
+Under a gauge transformation $\omega$,
+\[
+\mathcal A_\mu \mapsto \mathcal A_\mu^\omega = \omega(x) \mathcal A_\mu \omega(x)^{-1} + \partial_\mu \omega(x) \omega(x)^{-1}
+\]
+Sometimes this will require putting indices in the wrong places so we can decorate with $\omega$.
+
+The equations of motion are now
+\[
+\nabla^\mu \mathcal F_{\mu \nu} = 0,
+\]
+where $\nabla_\mu = D_\mu$.
+However, there is a redundancy here, because $\nabla^\mu \nabla^\nu \mathcal F_{\mu \nu} = 0$ automatically.
+This is related to the difficulty in dealing with terms like $A_\mu \mathcal O^{\mu \nu} A_\nu$ when $\mathcal O$ is not an invertible operator.
+
+\subsection*{Hamiltonian form}
+Observe that the Lagrangian (after rescaling to absorb the coupling constant)
+\[
+\tr \left( \left( \partial_\mu \mathcal A_\nu - \partial_\nu \mathcal A_\mu + g[\mathcal{A}_\mu , \mathcal A_\nu] - \frac{1}{2} \mathcal F_{\mu \nu}  \right) \mathcal F^{\mu \nu} \right)
+\]
+is up to a total derivative equal to 
+\[
+- \frac{1}{2} \tr \left( E_k \partial_0 \mathcal A_k - \frac{1}{2} (E_k^2 + G_k^2) + \mathcal A_0 \mathcal C\right)
+\]
+where $E_k = \mathcal F_{k0}$, $G_k = \frac{1}{2} \varepsilon^{ijk} \mathcal F_{ji}$, and $\mathcal C = \partial_k E_k - g[\mathcal A_k, E_k]$, $\mathcal C = C^a T^a$.
+This is still a Lagrangian but at least \emph{looks} more like a Hamiltonian theory.
+In particular $E_k^a, A_k^a$ are a canonical pair and $h = \frac{1}{2}[ (E_k^a)^2 + (G_k^a)^2]$ looks like a Hamiltonian.
+
+This is a ``degenerate Lagrangian'' because the $q_I, p^I$ don't form a coordinate system in phase space; this has to do with the $\mathcal A_0$ term \me{i.e. gauge fixing (?)}
+To deal with this, we follow Dirac and introduce constraints.
+
+Note the Poisson brackets
+\begin{align*}
+\{ E_k^a(\vc x), A_l^b(\vc y)\} &= \delta_{kl} \delta^{ab} \delta(\vc x - \vc y)\\
+\{C^a(\vc x), C^b(\vc y)\} &= g f^{abc} C^c(\vc x) \delta(\vc x - \vc y)
+\end{align*}
+say that we have a ``generalized Hamiltonian system.''
+
+Compare this to the case of a classical system $\Gamma$ with $n$ degrees of freedom, so that phase space is $2n$-dimensional with coordinates $p_i, q^i$.
+The action is
+\[
+S = \int \sum_i p_i \dot q^i - h(p,q) - \sum_a \lambda^a \phi^a(p,q) \, dt
+\]
+where the $\lambda$ are Lagrange multipliers and the $\phi$ are constraints.
+
+To deal with this, we will want $\Gamma$ to have ``first-class constraints'', which means:
+\begin{enumerate}
+    \item[0.] \me{already assumed} $p$ and $q$ have canonical Poisson brackets
+    \item $\{h, \phi^a\} = C^{\alpha \beta} (p,q) \phi^\beta$ 
+    \item $\{\phi^a, \phi^b\} = C^{\alpha \beta \gamma} (p,q) \phi^\gamma$
+\end{enumerate}
+We will see next time that Yang-Mills is an example of such a system (with infinitely many degrees of freedom.)

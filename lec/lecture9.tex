@@ -1,0 +1,161 @@
+%!TeX root = ../main.tex 
+\section*{Lecture 9, 13/02/2018}
+A correction from last time: The Faddeev-Popov determinant should actually be
+\[
+\prod \det[ \varphi^\alpha, \chi^\beta]_{\alpha \beta}
+\]
+with a phi and a chi, not two phis.
+
+\me{There was a recap of last time that I mostly missed.}
+
+To apply the FP path integral to Yang-Mills, we could try to use Lorentz gauge $\partial^\mu A_\mu^a = 0$ (which is Lorentz-invariant) but this worn't work, and we instead need to use Coulomb gague $\partial_k A_k^a = 0$.
+
+Now the partition function is
+\[
+\mathcal Z = \int \mathcal D E_i^a(x) \mathcal D A_\mu^a(x) e^{\frac{i}{8 g^2_{\text{YM}}} \int d^4x\, \tr(F_{\mu \nu} F^{\mu \nu}) } \prod \delta(\partial_k \mathcal A_k) \prod \det M_C[\mathcal A]
+\]
+We can now preform a Gaussian integral of the $E_i$ to get rid of one integration variable.
+
+The ``matrix'' $M_C$ is
+\[
+M_C = \Delta \delta^{ab} - g f^{abc} A_k^a \partial_k
+\]
+This is the analogue of \me{$\partial_\mu \partial_\nu$ (or something like that, I missed this)} for $\phi^4$ theory.
+Notice that the matrix depends on $\mathcal A$.
+
+The big difference from QED is that there, while strictly speaking the matrix term should have appeared in the path integral, it doesn't depend on $\mathcal A$.
+Therefore it just gives an overall constant which can be safely ignored.
+This is \emph{not} the case for non-Abelian gauge theories.
+Another way to avoid this determinant is to choose exactly the right gauge-fixing condition; we will return to this later.
+
+How are we going to pass from Coulomb to Lorentz gauge in our path integral?
+We use the ``Faddeev-Popov trick.''
+Define
+\[
+\Delta_L(\mathcal A) \int \prod \delta(\partial_\mu \mathcal A_\mu^\omega) d \omega = 1
+\]
+where $\Delta_L(\mathcal A)$ will wind up being the FP determinant; for now it's defined by the above equation.
+Here $\mathcal A_\mu^\omega$ (which should really have the $\mu$ upstairs) is the field $\mathcal A$ gague-transformed by the transformation $\omega$, and $d \omega$ is the invariant measure on the group $G$.
+\me{Since $ \omega \in \Omega^1(G,\lie g)$ I assume this means the promotion of the measure to that infinite-dimensional group?}
+
+An important fact here is that $\Delta_L(\mathcal A)$ is gauge invariant:
+\[
+\Delta_L(\mathcal A^{\omega'})^{-1} = \int \prod \delta(\partial_\mu \mathcal A_\mu^{\omega' \omega}) d \omega
+\]
+and this will wind up dropping out when we change variables to $\tilde \omega \defeq \omega' \omega$ in the integral, since the measure is invariant.
+
+Notice that on the Coulomb condition surface,
+\[
+\prod \det M_c[\mathcal A] = \Delta_C(\mathcal A)
+\]
+\begin{proof}
+Whenever $\partial _k \mathcal A_k = 0$, $\omega = e$ is always a solution of the $\delta$-function in the determinant.
+If we concentrate on infinitesimally nearby solutions $\omega(x) \approx e + u(x)$, then
+\[
+\partial_k \mathcal A_k^\omega = \square u - g [\mathcal A_k, \partial_k u] = M_C[\mathcal A]
+\]
+\end{proof}
+
+Now, we can change variables in the path integral from $\mathcal A_\mu$ to $\mathcal A_\mu^{\omega^{-1}}$:
+\[
+\mathcal Z = \int \mathcal D \mathcal A_\mu(x) \Delta_L(\mathcal A) \highlight{\int} \prod \delta(\partial_\mu \mathcal A_\mu) \highlight{d \omega} e^{\frac{i}{8 g_{\text{YM}}^2} \int d^4x\, \tr(F_{\mu \nu}F^{\mu \nu})} \highlight{\prod \delta(\partial_k \mathcal A_k^{\omega^{-1}}) \Delta_C(\mathcal A)}
+\]
+and all the terms in red will cancel.
+
+The resulting Lorentz-invariant path integral is
+\[
+\mathcal Z = \int \mathcal D \mathcal A_\mu(x) \Delta_L(\mathcal A) \prod \delta(\partial_\mu \mathcal A_\mu)  e^{\frac{i}{8 g_{\text{YM}}^2} \int d^4x\, \tr(F_{\mu \nu}F^{\mu \nu})}.
+\]
+We got this by the trick of integrating only over the \emph{solution space} to the gauge-fixing conditions and adding in a determinant to deal with the ``coordinate change.''
+
+To get the Feynman rules for this path integral we need to deal with the determinant and $\delta$-function terms.
+We do this by
+\begin{enumerate}
+    \item Introducing a new auxiliary field $B^a(x) \defeq \partial^\mu \mathcal A_\mu^a$ and integrating over all choices:
+    \[
+    \int \mathcal D B^a(x) \cdots \prod (\partial_\mu \mathcal A^\mu - B) e^{i \int \cdots + i \xi \int \tr(B^2) d^4x}
+    \]
+    \item Introducing ghosts and antighosts to write
+    \[
+    \det M_C(\mathcal A) = \int \mathcal D b(x) \mathcal D c(x) e^{i \int d^4x\, bM_c(\mathcal A) c}
+    \]
+\end{enumerate}
+These are not ``real'' particles, just a way to write down the determinant.
+We will be more precise about this when we introduce BRST.
+
+In summary (setting $g_{\text{YM}} = 1$) we have
+\[
+\mathcal Z = \int \mathcal D A_\mu(x) \mathcal D b(x) \mathcal D c(x) \mathcal D B(x) \exp\left[i \int d^4 x \frac{1}{8} \tr(F_{\mu \nu} F^{\mu \nu}) + \xi \tr(B^2) + i b M_c(\mathcal A)c \right] \delta(\partial_\mu \mathcal A^\mu - B)
+\]
+Here $B$ is an ``auxiliary field.''
+When you get it out you get a $\tr(\partial_\mu \mathcal A^\mu)$ term that depends on $\xi$, the ``gauge-fixing parameter.''
+
+This theory now gives Feynman rules, because even if the ghosts are strange nonphysical particles, there is no left-over gauge symmetry.
+We can also now couple to matter fields $\phi, \psi, \dots$ corresponding to representations of $G$.
+The propagators are:
+
+\begin{align*}
+&\text{gluons: } & \frac{i}{p^2 + i \varepsilon} \left[ -\eta^{\mu \nu} + (1- \xi) \frac{p^\mu p^\nu}{p^2}  \right] \delta^{ab} &= 
+\feynmandiagram [horizontal = a to b, baseline = (a.base)] {
+    a [particle = ${}^a_\mu$] -- [gluon] b [particle = ${}^b_\nu$]
+};\\
+&\text{ghosts: } & \frac{i \delta^{ab}}{p^2 + i \varepsilon} &= 
+\feynmandiagram [horizontal = a to b, baseline = (a.base)] {
+    a [particle = ${}^a$] -- [ghost] b [particle = ${}^b$]
+};\\
+&\text{matter fields: } & \langle \phi \bar \phi \rangle = \frac{i \delta^{ij}}{p^2 - M^2 + i \varepsilon} &=
+\feynmandiagram [horizontal = a to b, baseline = (a.base)] {
+    a -- [charged scalar] b
+};\\
+& & \langle \psi \bar \psi \rangle = \frac{i \delta^{ij}}{\slashed p - m + i \varepsilon} &=
+\feynmandiagram [horizontal = a to b, baseline = (a.base)] {
+    a -- [fermion] b
+};\\
+\end{align*}
+and we get vertices
+\[
+\feynmandiagram [horizontal = a to e, baseline = (e.base)] {
+    a [particle = $\nu b$] -- [gluon, momentum = $p$] e,
+    b [particle = $\mu a$] -- [gluon, momentum = $k$] e,
+    c [particle = $\rho c$] -- [gluon, momentum = $q$] e
+}; = g f^{abc} \left[ \eta^{\mu \nu} (k-p)^\rho + \eta^{\nu \rho} (p-q)^\mu + \eta^{\mu \rho} (q-k)^\nu \right]
+\]
+and
+\[
+\feynmandiagram [horizontal = a to b, baseline = (e.base)] {
+    a [particle] -- [gluon] e,
+    b [particle] -- [gluon] e,
+    c [particle] -- [gluon] e,
+    d [particle] -- [gluon] e
+}; = -i g^2 f^{abe} f^{cde} (\eta^{\mu \rho} \eta^{\nu \sigma} - \eta^{\mu \sigma}\eta^{\nu \rho} + \text{ other two permutations}).
+\]
+Notice there's no momentum dependence in the four-point vertex.
+There is also another ghost-to-gluon vertex
+\[
+\feynmandiagram [baseline = (e.base)] {
+    a [particle = $\mu a$] -- [gluon] e,
+    b -- [ghost] e,
+    c -- [ghost, momentum = $p$] e
+}; = - g f^{abc} p^\mu,
+\]
+which is important because, for example, the corrections to the gluon propagator are
+%These diagrams are ugly but it's probably not worth the time to fix them
+\[
+\feynmandiagram [layered layout, horizontal = a to b, baseline = (a.base)] [edges = gluon] {
+    a -- b --[half left] c --[half left] b -- d
+};
++
+\feynmandiagram [layered layout, horizontal = a to b, baseline = (a.base)] [edges = gluon] {
+    a -- b --[half left] c,
+    b -- c,
+    b -- [half right] c,
+    c -- d
+};
++
+\feynmandiagram [layered layout, horizontal = a to b, baseline = (a.base)] {
+    a -- [gluon] b -- [half left, ghost] c,
+    b -- [half right, ghost] c,
+    c -- [gluon] d
+};
+\]
+\me{I would say ``one-loop corrections'' but the middle term has two loops. Right?}

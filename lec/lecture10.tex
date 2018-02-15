@@ -1,0 +1,132 @@
+%!TeX root = ../main.tex
+\section*{Lecture 10, 15/02/2018}
+\me{I missed the first part, which was mostly a historical discussion of the BRST symmetry.}
+Consider a Lagrangian of the form
+\[
+S = \int d^4x\, \tr(F_{\mu \nu} F^{\mu \nu}) + \frac{1}{\xi} (\partial^\mu \A_\mu) ++ i \bar c \mathcal M(\A) c.
+\]
+Let's first consider the case of abelian gauge theory, in which case the $f^{abc}$ in $M(\A)$ vanishes and it's just $\square$.
+We can therefore define a symmetry $Q$ by
+\[
+\A_\mu \mapsto A_\mu + \theta \partial_\mu c
+\]
+where $\theta$ is an infinitesimal parameter.
+It should be a Grassman variables so that the second term is overall commuting.
+
+Under this symmetry the $F_{\mu \nu} F^{\mu \nu}$ term is invariant.
+How about the others?
+\begin{align*}
+\delta (\partial^\mu A_\mu)^2 &= 2 (\partial^\mu A_\mu)(\theta\square c) + \fade{(\theta \square c) (\theta \square c)}\\
+\delta \bar c &= -\frac{\theta}{\xi} \partial^\mu A_\mu \\
+\delta c &= 0
+\end{align*}
+where the term in gray vanishes because the variables are anticommuting.
+The variations cancel out, so the overall action is $Q$-invariant.
+$\delta c = 0$, which seems a bit strange, but remember that $c$ and $\bar c$ aren't actually complex conjugates.
+
+In the \emph{non}abelian case,
+\begin{align*}
+\delta A_\mu^a &= \frac{\theta}{g} D_\mu c^a\\
+\delta \bar c &= - \frac{1}{g} \frac{\theta}{\xi} \partial^\mu A_\mu^a
+\end{align*}
+which doesn't \emph{quite} work.
+Recall that $M(\A) = \delta^\mu D_\mu$ depends on $\A$, so we have to vary it too, and we'll get some cubic term $\theta \bar{c} c c $ in $\delta A^\mu$.
+If you set
+\[
+ \delta c^a = -\frac{1}{2} \theta f^{abc} c^b c^c,
+\] 
+then the variational term will vanish.
+
+This is a sort of ``supersymmetry,'' but since we aren't swapping actual physical bosons and fermions it's not the fancy new kind.
+Note that we might have to specify $\delta \bar c ^a = \theta B^a$, $\delta B^a = 0$, but we integrated out the auxiliary field $B$.
+
+\subsection*{Digression on alternative gauge choices}
+Can we decouple the ghost fields $b,c$?
+In two cases:
+\begin{enumerate}
+    \item $\grp U(1)$ is already Lorentz-invariant \me{(or just in Lorentz gauge? Which is Lorentz-invariant.)}
+    \item Different types of \emph{axial} gauge.
+    They all depend on a choice of constant vector $v^\mu$, and set $v^\mu A_\mu^a = 0$.
+    Examples:
+    \begin{enumerate}
+        \item Temporal: $v^\mu = (1,0,0,0)$, giving $A_0^a = 0$.
+        \item Light-cone:\footnote{Really should be ``infinite-momentum,'' because it's not just the light cone, it's the light cone with a preferred direction} $v^\mu v_\mu = 0$
+        \item (Proper) axial: $v^\mu$ spacelike, say $v^\mu = (0,0,0,1)$.
+        This gives $A_3^a = 0$.
+    \end{enumerate}
+\end{enumerate}
+In the last case, the $b$ and $c$ terms decouple in a somewhat subtle way.
+The gluon propagator is
+\[
+\Pi^{ab \mu \nu}_{\text{axial}} = \frac{1}{p^2 + i \varepsilon} \left[ - \eta^{\mu \nu} + \frac{v^\mu p^\nu + v^\nu p^\mu}{v \cdot p} - \frac{(v^2 + p^2) p^\mu p^\nu}{(v \cdot p)^2}\right]\delta^{ab}
+\]
+Observe that $p_\mu \Pi^{ab \mu \nu} = 0$ whenever $p^2 = 0$ is on-shell.
+In addition, if $\xi = 0$, $v_\mu \Pi^{ab \mu \nu} 0$.
+Because the ghost vertex looks like $v^\mu f^{abc}$, it will give zero when dotted into any gluon propagator.
+This is the sense in which the gluons decouple.
+
+\subsection*{Renormalizaton of QCD}
+We focus on the case $G = \grp{SU}(N),$ coupled to $n_f$ fermions in the fundamental (vector) representation.
+There will also be ghosts.
+We will represent counterterm diagrams with $\otimes$ on them.
+We will use dimensional regularization following Chapter 26 of Schwartz, so that
+\[
+d = 4- \varepsilon, \quad [\mu] = 1, \quad \tilde \mu = 4 \pi e^{- \gamma} \mu
+\]
+where $\gamma$ is the Euler constant $0.57\dots$.
+In $d$ dimension, $g$ is no longer dimensionless, which we choose to represent by writing
+\[
+g = g_{\text{YM}} \mu^{(4-d)/2}
+\]
+We will work with $\xi = 1$ for now.
+
+A joke: Did you know that a Chinese Yuan is equal to $1/2$?
+The symbol looks like $\bar \pi$, and since $\hbar = h/2 \pi$, $\bar \pi = \pi/2 \pi = 1/2$.
+We similarly sometimes write barred $d$ to avoid the factors of $2 \pi$ in momentum-space integrals, \me{but since we only did it once and I don't want to deal with LaTeX I won't.
+I think this symbol is in Unicode, though.}
+
+Recall that the tree-level gluon propagator is
+\[
+\Pi^{ab \mu \nu} = \delta^{ab} \frac{-i \eta^{\mu \nu}}{p^2 + i \varepsilon}.
+\]
+The first one-loop correction to consider is 
+\[
+\feynmandiagram [layered layout, horizontal = b to c, baseline = (b.base)] {
+  a -- [gluon] b -- [fermion, half left] c,
+  c -- [fermion, half left] b,
+  c -- [gluon] d  
+}; = i \mathcal M
+\]
+which will be very similar to the QED diagram but with some numerical factors depending on $G$:
+\[
+ i \mathcal M = - \tr(T^a T^b) (i g)^2 \int \frac{d^4k}{2 \pi} \frac{i}{(p+k)^2 - m^2}\frac{i}{k^2 - m^2} \tr[\gamma^\mu (\slashed k - \slashed p +m) \gamma^\nu(\slashed k + m)]
+\]
+Here $\tr(T^a T^b)$ is over the matrix indices.
+It will equal $T \delta^{ab}$, where $T$ is a numerical factor depending on the representation.
+For the fundamental one it's $T_F = 1/2$, while for the adjoint representation it's $T_A = N$.
+\me{I think this is related to the normalization of the Killing form.}
+Similarly the quadratic Casimir element will show up, and its value will be the dimension of the representation.
+
+We expect \me{(I'm not sure why there are two $\mathcal M$s here, or what the $F$ stands for.
+It may be a reminder from QED.)}
+\begin{align*}
+\mathcal M &= -g^2 \delta^{ab} (\eta^{\mu \nu}p^2 - p^\mu p^\nu) \Pi_2(p)\\
+\mathcal M_F &= \delta^{ab} T_F \frac{g^2}{16 \pi^2} (\eta^{\mu \nu}p^2 - p^\mu p^\nu)  \Pi_2(p) \left[ -\frac{8}{3} \frac{1}{\varepsilon} - \frac{4}{3} \log \frac{\tilde \mu^2}{-p^2}\right]
+\end{align*}
+Here we think of the $1/\varepsilon$ as analogous to a $\log \Lambda$ divergence.
+We don't use a cutoff $\Lambda$ because sharp cutoffs don't play well with gauge theories.
+
+The sum of all four loop-level diagrams is now
+\[
+\mathcal{M}^{ab \mu \nu}_{\text{total one-loop}} = \delta^{ab} \frac{g^2}{16 \pi^2} ( \cdots)^{\mu \nu} \left[ C_A \left( \frac{10}{3 \varepsilon} + \frac{5}{3} \log \frac{\tilde \mu}{-p^2} \right) - n_f T_F\left( \frac{8}{3 \varepsilon} + \frac{4}{3} \log \frac{\tilde \mu}{-p^2} \right) \right]
+\]
+where $C_A$ is the Casimir element on the adjoint representation, and the $(\dots)^{\mu \nu} = \eta^{\mu \nu}p^2 - p^\mu p^\nu$ \me{I think.}
+
+This means that the renormalized Lagrangian will be
+\begin{align*}
+\mathcal L &= -\frac{1}{4}Z_3 (\partial_\mu A_\nu^a - \partial_\nu A_\mu^a) + Z_2 \bar \psi_i(i \slashed \partial - Z_m m) \psi_i - Z_{3c} \bar c^a \square c^a \\
+&- g_R Z_{A^3} f^{abc} (\partial_\mu A_\nu^a) A_\mu^b A_\mu^c - \frac{1}{4} g_R^2 Z_{A^4} (f^{eab} A^a_\mu A^b_\nu)(f^{ecd} A_\mu^c A_\nu^d)\\
+&+g_r Z_1 A_\mu^a \bar \psi_i \gamma^\mu T_{ij}^a \psi_j + g_R Z_{1c} f^{abc} (\partial_\mu \bar c^a)A_\mu^b c^c
+\end{align*}
+where for brevity we have dropped the $R$ subscripts from everything except the coupling constants $g$.
+Tomorrow we will determine the relationships between the $Z$s, which right now have somewhat arbitrary historical names.

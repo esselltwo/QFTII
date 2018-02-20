@@ -1,2 +1,208 @@
 %!TeX root = ../main.tex
-\section*{Lecture $N$, date}
+\section*{Lecture 11, 20/02/2018}
+Today we continue discussing one-loop calculations in QCD.
+We were previously working with dimensional regularization, which works for $\log \Lambda$, i.e.~$1/\varepsilon$ terms, but is not good for higher powers $\Lambda^n$.
+Instead we use renormalized perturbation theory, with the counterterms from before.
+Recall the Lagrangian
+\begin{align*}
+\mathcal L &= -\frac{1}{4}Z_3 (\partial_\mu A_\nu^a - \partial_\nu A_\mu^a) + Z_2 \bar \psi_i(i \slashed \partial - Z_m m) \psi_i - Z_{3c} \bar c^a \square c^a \\
+&- g_R Z_{A^3} f^{abc} (\partial_\mu A_\nu^a) A_\mu^b A_\mu^c - \frac{1}{4} g_R^2 Z_{A^4} (f^{eab} A^a_\mu A^b_\nu)(f^{ecd} A_\mu^c A_\nu^d)\\
+&+g_r Z_1 A_\mu^a \bar \psi_i \gamma^\mu T_{ij}^a \psi_j + g_R Z_{1c} f^{abc} (\partial_\mu \bar c^a)A_\mu^b c^c
+\end{align*}
+
+We will use the $\overline{MS}$ scheme (modified minimal subtraction.)
+This just means that in addition to dropping certain poles, we will also drop some associated constant terms that always come along.
+See Appendix B of Schwinger for details.
+
+Recall that $Z_3 = 1 + \delta_3$, expressed diagrammatically as
+\[
+\delta_3 = \feynmandiagram [layered layout, horizontal = a to e, baseline = (a.base)]{
+    a -- [gluon] e [crossed dot] -- [gluon] b
+};
+\]
+\me{This is another diagram that looks off.
+Apparently TikZ-Feynman doesn't support counterterm propagators by default?}
+We found from $\mathcal M ^{\mu \nu a b}_{\text{one-loop}}$ that
+\[
+\delta_3 = \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2}\left[ \frac{10}{3}C_A - \frac{8}{3} n_f T_F \right]
+\]
+We can similarly extract $\delta_2$ and $\delta_m$ from the diagram
+\[
+\feynmandiagram [layered layout, horizontal = a to b]{
+    a -- b -- [fermion] c -- d,
+    b -- [gluon, half left] c
+};
+\]
+just like in QED.
+The only change is that we get a ``color'' factor
+\[
+\sum T_{ki}^a T_{jl}^b \delta^{ab} \delta^{kl} = \sum (T^a T^a)_{ij} = C_F \delta_{ij}
+\]
+\me{where $C_F$ is the quadratic Casimir applied to the fundamental representation.}
+
+Thus
+\begin{align*}
+\delta_2 &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2}(-2 C_F)\\
+\delta_m &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2}(-6 C_F)\\
+\end{align*}
+Notice that everything has the same factor of $\varepsilon^{-1} g^2 /16 \pi^2$.
+The $1/16 \pi^2$ is sometimes called the ``one-loop angle factor,'' and can help make perturbation expansion meaningful even if $g^2 > 1$.
+
+Actually, we should really keep around the factors of $\xi$ to make sure our final answer is independent of the gauge-fixing condition, in which case
+\begin{align*}
+\delta_2 &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2}\left[-2 C_F + 2(1- \xi) C_F\right]\\
+\delta_3 &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2}\left[\frac{10}{3} - \frac{8}{3} n_f T_f + (1- \xi) C_A  \right]\\
+\end{align*}
+
+The next two diagrams to look at are
+\[
+i g \Gamma^{a \mu}_{ij} =
+\feynmandiagram [horizontal = a to e, baseline = (e.base)]{
+    a -- [gluon] e,
+    b -- [fermion] e,
+    e -- [fermion] c
+};
+\]
+and the corresponding loop correction
+\[
+ig (T^c T^a T^b)_{ij} \delta^{bc} \Gamma^\mu_{(2A)} = 
+\feynmandiagram [horizontal = a to e, baseline = (e.base)]{
+    a -- [gluon] e,
+    b -- [fermion] e,
+    e -- [fermion] c,
+    b2 -- b,
+    c2 --c,
+    b -- [gluon, half left] c,
+};
+\]
+where the $\Gamma$s are just shorthand for whatever these come out to be; they are similar to the QED terms.
+The new part is
+\[
+T^b T^a T^b = \left(C_F - \frac{1}{2} C_A \right) T^a
+\]
+so that
+\[
+\Gamma^\mu_{(2A)} = \highlight{{F_1^{(2A)} \frac{p^2}{m^2}}} \gamma^\mu + i \frac{\sigma^{\mu \nu}}{2m} p_\nu F_2^{(2A)} \frac{p^2}{m^2}.
+\]
+The highlighted part is the ``form factor'' \me{although I'm not quite sure what this means.}
+
+This result gives us that
+\begin{align*}
+\delta_1 &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2} \left[ -2 C_F - 2 C_A + 2(1- \xi) C_F + \frac{1}{2} C_A\right].
+\end{align*}
+Similarly, we can find $\delta_{3c}$ from corrections to the diagram
+\[
+\feynmandiagram[horizontal = a to e]{
+    a -- [gluon] e,
+    b -- [ghost] e,
+    e -- [ghost] c
+};
+\]
+
+The rest of the counterterms turn out to be
+\begin{align*}
+\delta_{3c} &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2} \left[ C_A + \frac{1}{2}(1- \xi) C_A\right]\\
+\delta_{A^3} &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2} \left[ \frac{4}{3} C_A - \frac{8}{3}n_f T_F + 2 (1 - \xi)C_A\right]\\
+\delta_{A^4} &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2} \left[ -\frac{2}{3}C_A - \frac{8}{3} n_f T_F + 2(1- \xi)C_A \right]\\
+\delta_{1c} &= \frac{1}{\varepsilon}\frac{g^2}{16 \pi^2} \left[ -C_A + (1 - \xi)C_A \right]
+\end{align*}
+It's pretty hard to get this calculation to come out right if you don't know the answer: you can do things like use two different methods and compare to make sure you don't miss terms.
+
+\subsection*{Physical observables}
+How do we extract them?
+For example, the coupling ``constant'' isn't constant, because it's RG scale dependent.
+We discuss how to deal with this.
+
+Recall that in addition to $\mu$, there's another scale $\tilde \mu = e^{- \gamma} \mu^2$, because terms like
+\[
+\log \frac{\mu^2}{p^2} + \log 4 \pi - \gamma
+\]
+show up a lot.
+
+Writing $g_B$ for the bare coupling constant, we have
+\[
+\mu \frac{d}{d \mu} g_B(\mu) = 0
+\]
+because it doesn't depend on the scale.
+However, there is a ``dimensional transmutation:'' while the classical dimensions of $g_{\text{YM}}$ are $0$, at the quantum level this gets replaced by a dimensionful parameter $\mu = \Lambda_{\text{QCD}}$ that represents the transition from weak to strong self-interaction.
+
+
+To figure this out, notice that the $\bar \psi \psi A$ term in the Lagrangian is both
+\[
+\mu^{\frac{4-d}{2}} g_R Z_1 A^2_\mu \bar \psi_i T_{ij}^a \psi_j
+\]
+and
+\[
+g_B A_\mu^B \bar \psi^B T \gamma^\mu \psi^B
+\]
+so by comparison we extract
+\[
+g_B = \mu^{\frac{4-d}{2}} g_R \frac{Z_1}{Z_2 \sqrt Z_3}.
+\]
+Observe that to first order
+\[
+\frac{Z_1}{Z_2 \sqrt Z_3} \sim (1 + \delta_1)(1 - \delta_2)(1 - \delta_3/2) \sim 1 + \delta_1 - \delta_2 - \delta_3 /2.
+\]
+
+Now
+\begin{align*}
+0 = \beta(g_R) &\defeq \mu \frac{d}{d \mu} g_B \\
+&= g_R \left[ - \frac{\varepsilon}{2} + \frac{\varepsilon}{2} g_R \frac{\partial}{\partial g_R}(\delta_1 - \delta_2 - \delta_3/2) \right]\\
+&= \frac{- \varepsilon}{2} g_R - \frac{g_R^3}{16 \pi^2}\left[ \frac{11}{3} C_A - \frac{4}{3} n_f T_F \right].
+\end{align*}
+Notice that in particular the $\xi$ drops out.
+
+If we take $\varepsilon$ to zero and define
+\[
+\alpha_S \defeq \frac{g_S^2}{4 \pi},
+\]
+then 
+\[
+\mu \frac{d}{d \mu} \alpha_S = - \frac{\alpha_S^2}{2 \pi}.
+\]
+with \me{initial condition (?)} $\beta_0 \defeq 11 - 2 n_f /3$.
+The minus sign above is very important: as long as there are fewer than $18$ flavors, the strength $\alpha_S$ goes \emph{down} at high energies.
+This is \emph{asymptotic freedom.}
+Explicitly, we can solve the above differential equation as
+\[
+\alpha_S(\mu) = \frac{2 \pi}{\beta_0} \frac{1}{\log \mu / \Lambda_{\text{QCD}}}
+\]
+
+\subsection*{Charge universality}
+How do we know that the the coupling constant is the same for all flavors?
+We should check this.
+In $QED$ this was a consequence of $Z_1 = Z_2$, which we no longer have.
+But that's actually a stronger condition than needed.
+
+Consider the Lagrangian term
+\[
+Z_{2 \highlight{i}} \bar \psi_{\highlight{i}} (i \slashed \partial + g_R \frac{Z_{1 \highlight{i}}}{Z_{2 \highlight{i}}} \slashed A^a T^a ) \psi_{\highlight{i}}
+\]
+where the $\highlight{i}$ can be either up or down (or whatever other flavor).
+All we need for universality is for the ratios $Z_{1 \highlight{i}}/Z_{2\highlight{i}}$ to be the same for all $\highlight{i}$.
+This will require
+\[
+\frac{Z_1}{Z_2} = \frac{Z_{1c}}{Z_{3c}} = \frac{Z_{A^3}}{Z_3} = \frac{\sqrt Z_{A^4}}{\sqrt Z_3},
+\]
+which to first-order means
+\[
+\delta_1 - \delta_2 = \delta_{1c} - \delta_{3c} = \delta_{A^3} - \delta_3 = \frac{1}{2} \delta_{A^4} - \frac{1}{2} \delta_3.
+\]
+These are in fact all equal to
+\[
+- \frac{1}{\varepsilon} \frac{g^2}{16 \pi^2} C_A( \xi + 3),
+\]
+so it works out.
+Charge universality has also been checked experimentally.
+
+\subsection*{Gauge theories and BRST symmetry, again}
+We will now return to some more general theory, in more detail next lecture.
+For now here's an introduction.
+
+In Yang-Mills we started with a gauge theory including redundant fields.
+This causes all kinds of technical problems, like degenerate Gaussian terms in the integral.
+We fixed it by introducing the Faddeev-Popov determinant and ghosts.
+A more systematic way of looking at this is to say that we traded the local gauge symmetry for a \emph{global} fermionic symmetry $Q$.
+
+The somewhat unusual feature that $Q^2 = 0$ will be useful in a more abstract description of gauge theory, because it lets us view it as a coboundary operator in some kind of cohomology theory.
+The basic idea is that we have some large, nonphysical Hilbert space $\mathcal H$ with \emph{everything} (including ghosts, things with the wrong momentum, etc.) and we define the physical space to be $\mathcal H / \operatorname{im} Q$.

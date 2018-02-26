@@ -1,0 +1,110 @@
+%!TeX root = ../main.tex
+\section*{Lecture 12, 22/02/2018}
+Today we discuss BRST quantization in more detail.
+A good reference (even though it's a string theory book) is J.~Polochinsky, \emph{String Theory} Volume 1, Chapter 4.3.
+
+Our theory will have fields $\phi_i$ and (infinitesimal) gauge transformations $\delta_\alpha$.
+We assume the $\delta_\alpha$ obey
+\[
+[ \delta_\alpha, \delta_\beta] = f^{\gamma}_{\phantom{\gamma}\alpha \beta} \delta_\gamma,
+\]
+where the $f^{\gamma}_{\phantom{\gamma}\alpha \beta}$ are constants, not functions of spacetime or the fields or anything else.
+(There are interesting theories where this is not the case, like supergravity.)
+We will also have a gauge-fixing condition
+\[
+F^A(\phi_i) = 0
+\]
+that depends only on the fields $\phi$.
+For example, in Yang-Mills we had $\phi_i$ the $A_\mu^a$ and $F^A$ the condition $\mathcal F^a = \partial^\mu A_\mu^a = 0$.
+
+We work with a path integral (which we think of as being in imaginary time)
+\[
+\int \frac{\mathcal D \phi_i}{\operatorname{Vol}(\mathcal G)} e^{-S_1(\phi_i)}
+\]
+where $S_1$ is the usual action, e.g.
+\[
+S_1 = \frac{1}{2 g^2_{\text{YM}}} \int \tr(FF)
+\]
+for Yang-Mills.
+
+Of course, to make sense of the $1/\operatorname{Vol}(\mathcal G)$ and gauge-fixing we need to introduce fermionic ghosts $c^\alpha$, fermionic antighosts $b_A$, and bosonic auxiliary fiels $B_A$, to get a path integral
+\[
+\int \mathcal D \phi_i \mathcal D B_A \mathcal D b_A \mathcal D c^\alpha e^{- S_1 - S_2 - S_3},
+\]
+where
+\begin{align*}
+S_2 &= -i B_A F^A(\phi)\\
+S_3 &= b_A(\delta_\alpha F^A(\phi))c^\alpha.
+\end{align*}
+
+The BRST symmetry $Q$ is now given by
+\begin{align*}
+\delta_B \phi_i &= -i \varepsilon c^\alpha \delta_\alpha \phi_i\\
+\delta_B B_A &= 0\\
+\delta_B b_A &= B_A\\
+\delta_B c^\alpha &= \frac{i}{2} \varepsilon f^{\alpha}_{\phantom{\alpha} \beta \gamma} c^\beta c^\gamma
+\end{align*}
+where $\varepsilon$ is a single Grassman parameter that doesn't depend on spacetime.
+Notice that $B_A$ and $b_A$ form a closed multiplet.
+
+There is also a $\grp U(1)$ ``ghost number'' symmetry that assigns $\phi_i,B$ to $0$, $c^\alpha$ and $Q$ to $1$, and $b_A$ to $-1$. \me{I think this may have something to do with the homological grading.}
+
+One important property of this symmetry is its action on the ``gauge-fixing fermion'' $b_A F^A(\phi)$:
+\[
+\delta_B(b_A F^A(\phi)) = i \varepsilon(S_2 + S_3).
+\]
+
+We now discuss the meaning of $Q^2 = 0$.
+The idea is that the most obvious Fock space of the theory, which has \emph{all} fields $\phi_i, b, c$, etc.~is too big, and we can use $Q$ to select out physically meaningful states.
+To be explicit: the physics should not change when we change the gauge-fixing condition $F^A \to F^A + \delta_G F^A$.
+Under this transformation,
+\[
+\epsilon \delta_G \langle f | i \rangle = i \langle f| \delta_B(b_A \delta F^A) | i \rangle,
+\]
+so for this to be zero we need
+\[
+0 = -i \langle f | \{Q, b_A \delta_G F^A\} |i\rangle,
+\]
+so that $Q|i\rangle$ \me{and/or (?)} $\langle f | Q$ vanish.
+
+In addition, then any state of the form $Q|\chi \rangle$ will vanish in any physical correlator.
+We therefore define the physical Hilbert space to be the ``cohomology'' $\ker Q / \operatorname{im} Q$ of $Q$.
+
+\me{Here there was a discussion of de Rham cohomology, which I did not write down.
+One point of emphasis was that while the (co)chain spaces $\Omega^\bullet(M)$ are usually very large, the cohomology spaces are usually finite-dimensional.
+Our state spaces will still be infinite-dimensional, but they are in some sense ``smaller'' as well.}
+
+To account for the changing gauge-fixing condition, we want to add in a new action term
+\begin{align*}
+\varepsilon S_4 &= \delta_B( b_A B_B M^{AB})\\
+&= B_A B_B M^{AB}
+\end{align*}
+where $M^{AB}$ is the matrix of some quadratic form.
+To have $Q^2 = 0$ we need
+\[
+0 = [Q, \{Q, b_A \delta_G F^A\} ] = [Q^2, b_A \delta_G F^A],
+\]AB
+so at least $Q^2$ will be a scalar function of spacetime.
+But there is no boson of ghost number $2$, so in fact it had better be zero.
+
+\subsection*{Example: Topological Yang-Mills}
+Here we have gauge fields $A_\mu^a$ that form a flat connection on a principal $G$-bundle over a Riemannian $4$-manifold $M$.
+The symmetries are
+\[
+\delta_\alpha : \delta A_\mu^a = f_\mu^a
+\]
+so there are no proper degrees of freedom.
+\me{I'm not sure what the above line means.
+It is just that you can arbitrarily transform the fields locally?}
+However, there might be global topological information.
+
+The action is the integral of the second Chern class
+\[
+S = \int_M \tr(F \wedge F)
+\]
+which is locally a total derivative.
+To apply the BRST technology we need a gauge fixing-condition.
+The idea is that this will be something about instantons.
+You might ask how different gauge-fixing conditions can give you different theories; it's because the space of such conditions is disconnected.
+
+In this case: we will split up $F_{\mu \nu} = F_{\mu \nu}^+ + F_{\mu \nu}^-$ into self-dual and anti-self-dual fields and consider the instanton equation $F_{\mu \nu}^+ = 0$.

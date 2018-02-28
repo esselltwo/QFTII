@@ -1,0 +1,37 @@
+%!TeX root = ../temp.tex
+\section*{Lecture 13, 28/02/2018}
+Today we discuss some examples of BRST quantization.
+
+\subsection*{Point particle}
+We consider a point particle $X^\mu(\tau)$, which is a map from $\mathbb R$ to spacetime.
+The action is
+\[
+S_1 = \int d\tau \left (\frac{1}{2} \dot X^\mu \dot X^\nu \eta_{\mu \nu} e + \frac{1}{2} e m^2 \right)
+\]
+where $e(\tau)$ is the einbein, which is some kind of axuiliary metric field.
+In theories with gravity we usually have someting like $g_{\alpha \beta} = e^A_\alpha e^B_\beta \eta_{\alpha \beta}$, but in one dimension $g_{\tau \tau} = e^2$.
+Here it's an analogue of the square root of the volume form, which is in the action to give reparametrization/diffeomorphism invariance.
+
+The gauge transformations are
+\begin{align*}
+\delta X^\mu &= i \varepsilon c \dot X^\mu\\
+\delta e &= i \varepsilon \dot c e\\
+\delta c &= i \varepsilon c \dot c\\
+\delta B &= 0\\
+\delta b &= b\\
+\end{align*}
+where $c$ \me{and $b$ are} ghosts.
+The full action will then be $S_1 + S_2 + S_3$, where the second two terms are $Q$-exact terms involving a ``gauge-fixing fermion'' $\psi$ with $\{ Q, \psi\}  = 0$.
+With the gauge-fixing condition $e = 1$, we have
+\begin{align*}
+S_2 &= \int i B(e-1)\\
+S_3 &= -\int e \dot bc
+\end{align*}
+If you integrate out $B$ this gives the full action as
+\[
+S = \int d \tau \left( \frac{1}{2} (\dot X^\mu)^2 + \frac{1}{2} m^2 - \dot b c \right).
+\]
+
+We 
+
+

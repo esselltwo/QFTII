@@ -1,4 +1,4 @@
-%!TeX root = ../temp.tex
+%!TeX root = ../main.tex
 \section*{Lecture 13, 28/02/2018}
 Today we discuss some examples of BRST quantization.
 
@@ -59,3 +59,62 @@ This has to do with the ghost number stuff we've ignored: the up states have gho
 \]
 To get the actual physical state space we have to add in the condition $b \ket{\chi}$ by hand.
 If you're systematic about this, it's really the passage to \emph{equivariant} cohomology.
+
+\subsection*{Topological Yang-Mills}
+We work in a Riemannian $4$-manifold $M$ with a principal $G$-bundle.
+The fields are flat $G$-connections $A_\mu^a$.
+The symmetries of the theory are
+\[
+\delta_\mu^a = f_\mu^a + D_\mu f^a
+\]
+where $f_\mu$ and $f$ are independent.
+This means that any potentials are locally equivalent.
+This is one reason it's a ``topological'' theory: there are no local degrees of freedom, i.e.~gluons.
+
+The action is
+\[
+S = \int_M \tr(F \wedge F)
+\]
+which is a topological invariant, the integral of the second Chern class.
+This is another reason it's a topological theory: it's invariant under (local) changes in the metric.
+
+If, for example, $M = \mathbb R^4$ with boundary $S^3$, the action will be equal to the integral of the Chern-Simons form
+\[
+\int_{S^3} \tr\left(A \wedge dA + \frac{2}{3} A \wedge A \wedge A \right)
+\]
+over the boundary.
+In some sense this is the better definition, since the boundary terms are always dominant at low energy.
+
+In order for this integral to be well-defined, $A$ needs to be a pure gauge as you go to infinity.
+Such connections are then parametrized by \me{homotopy classes of} maps $g: S^3 \to G$, which in simple cases are described by some winding number.
+Here it's called the ``instanton number:'' instantons have it as $1$, and other numbers are ``multi-instantons''.
+
+What are the instantons?
+They minimize the action
+\[
+\int d^4x \tr\left(F_{\mu \nu} \pm \frac{1}{2} \varepsilon_{\mu \nu \rho \sigma} F^{\rho \sigma}\right)
+\]
+This is related to the BPS or Bogomolgni inequality (which here is missing some constants)
+\[
+\int d^4x \tr(F_{\mu \nu} F^{\mu \nu}) \ge \left| \int F \wedge F \right|
+\]
+so the minima will be self-dual and anti-self-dual fields.
+
+This is related to Donaldson theory.
+
+We can also view the conditions $F_{\mu \nu}^\pm = 0$ as gauge-fixing conditions and apply the BRST machinery (``cohomological QFT'') and get
+\begin{align*}
+[Q, A_\mu^A] &= \psi_\mu^a\\
+\{Q, \psi_\mu^a\} &= -D_\mu \phi^a\\
+[Q, \phi^a] &= 0
+\end{align*}
+This $Q$ doesn't square to zero, but instead to a YM gauge term.
+We fix this by adding a ghost $c$ for the ghost $\psi$:
+\begin{align*}
+[Q,A_\mu^a] &= \psi_\mu^a + D_\mu c^a\\
+\{Q,\psi_\mu^a\} &= -D_\mu \phi^a + [c, \psi_\mu^a]\\
+[Q, \phi^a] &= [c,\phi^a].
+\end{align*}
+
+More generally, the idea is that $Q$ promotes fields to ghosts, ghosts to gauge transformations of fields, and these to zero.
+Such $Q$ won't square to zero, but you can fix this by adding in ghosts for ghosts.

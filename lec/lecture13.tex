@@ -32,6 +32,30 @@ If you integrate out $B$ this gives the full action as
 S = \int d \tau \left( \frac{1}{2} (\dot X^\mu)^2 + \frac{1}{2} m^2 - \dot b c \right).
 \]
 
-We 
+We now want to determine the physical Hilbert space $\mathcal H_{\text{phys}}$.
+One obvious condition on physical states there is that $p^2 = -m^2$.
 
-
+To do this, consider the Hamiltonian operator $(p^2 + m^2)/2$ and the BRST differential $Q = cH$.
+We want
+\[
+[p^\mu, X^\nu] = - i \eta^{\mu \nu}, \quad \{ b, c\} =1,
+\]
+which gives a large, non-physical Hilbert space $\mathcal H = \mathcal H_{p,x} \otimes \mathcal H_{b,c}$.
+Here $\mathcal H_{p,x}$ is spanned by vectors $\ket{k^\mu}$ with $p^\mu \ket{k^\mu} = k^\mu \ket{k^\mu}$, while $\mathcal H_{b,c}$ is spanned up $\ket \uparrow$ and $\ket \downarrow$, with $b,c$  acting as lowering, raising operators.
+Then the BRST charge acts by
+\begin{align*}
+Q \ket{k^\mu, \downarrow} &= \frac{1}{2} (k^2 + m^2) \ket{k^\mu, \uparrow}\\
+Q \ket{k^\mu, \uparrow} &= 0
+\end{align*}
+Then the $Q$-closed states are $\ket{k^\mu, \downarrow}$ such that $k^2  = -m^2$ or $\ket{k^\mu, \uparrow}$.
+The $Q$-exact states are exactly the $\ket{k^\mu, \uparrow}$ that have $k^2 + m^2 \ne 0$, so we get that
+\[
+\mathcal H_{\text{phys}} = \{\ket{k^\mu, \downarrow}, \ket{k^\mu, \uparrow} : k^2 + m^2 = 0 \}
+\]
+Notice that this is actually two times too big.
+This has to do with the ghost number stuff we've ignored: the up states have ghost number $1/2$ and the down states $-1/2$:
+\[
+\mathcal H_{\text{phys}} = \mathcal H_{\text{phys}}^{1/2} \otimes \mathcal H_{\text{phys}}^{-1/2}.
+\]
+To get the actual physical state space we have to add in the condition $b \ket{\chi}$ by hand.
+If you're systematic about this, it's really the passage to \emph{equivariant} cohomology.

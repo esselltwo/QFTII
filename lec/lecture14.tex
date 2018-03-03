@@ -1,0 +1,74 @@
+%!TeX root = ../main.tex
+\section*{Lecture 14, 01/03/2018}
+Reminder from last time: The action of the BRST charge can be written as
+\begin{align*}
+[Q, A_\mu^a] &= \psi_\mu^a + \highlight{D_\mu c^a}\\
+\{Q, \psi_\mu^a\} &= - D_\mu \phi^a + \highlight{[c,\psi_\mu]^a}\\
+[Q,\phi^a] &= 0
+\end{align*}
+If you don't include the \highlight{highlighted} terms, then $Q^2$ is some (nonzero) gauge transformation, not zero.
+It's customary to not write them explicitly, however, because in more complicated theories with ghosts for ghosts, etc.~you wind up with too many terms.
+
+We now return to topological Yang-Mills as discussed last time.
+There are an interesting class of observables \me{really cohomology classes}
+\[
+\mathcal O_{k,0}(x) = \tr(\phi(x)^k)
+\]
+where the power is actually some invariant tensor power.
+This observable has ghost number $2k$.
+\me{I'm not sure what the following means:} This is ``anomalous'' but we can fix this in QM by adding back in terms with the right ghost numbers.
+
+There are ``descent equations''
+\begin{align*}
+d \mathcal O_{k,0} &= \{Q, \mathcal O_{k,1}(x)\}\\
+\mathcal O_{k,1} &=-k \tr(\phi^{k-1}\psi_m)dx^\mu
+\end{align*}
+and so on, until we run out of nonzero exterior powers.
+The integral of $\mathcal O_{k, \ell}$ over an appropriate-dimension submanifold is a scalar with ghost number $2k-\ell$, so $\int_M \mathcal O_{k,4}$ is a reasonable candidate to include in the action:
+\[
+S = S_1 + \{Q, \psi\} + \sum_k t_k \int \mathcal O_{k,4}
+\]
+
+We will need antighosts and auxiliaries:
+\begin{enumerate}
+    \item $(\lambda,\eta)$ with $\lambda$ having the same quantum numbers as $\phi$ and ghost number $\mathcal U(\lambda) = -2$
+    \item $(\chi, H)$ where $\mathcal U(\chi_{\mu \nu} = -1$ and $\mathcal U (H) = 0$.
+    $\chi_{\mu \nu} $ is an antighost, fermionic, and self-dual.
+\end{enumerate}
+Now
+\begin{align*}
+S &= \frac{1}{e^2} \int \{Q,V\} d^4x, \text{ with}\\
+V &= \sqrt g \tr \left [ -2 \chi_{\alpha \beta} \left(H^{\alpha \beta} - \frac{1}{2} (F^{\alpha \beta} - F^{* \alpha \beta}) \right) - D_\alpha \lambda \psi^\alpha \right]
+\end{align*}
+and you can compute $\{Q,V\}$ to get some complicated action that describes topological Yang-Mills.
+
+Highlights of this action:
+\[
+S = \frac{1}{e^2} \int \sqrt g \tr \left [ \frac{1}{8} (F_{\alpha \beta} - F_{\alpha \beta}^*)^2 + D_\alpha \lambda D^\alpha \phi - D_\alpha \eta \psi^\alpha + \text{plus 16 other terms}\right]
+\]
+Notice that $(F_{\alpha \beta} - F_{\alpha \beta}^*)^2$ is just a standard YM Lagrangian with a topological term $F\wedge F$ added in.
+
+This looks almost exactly like $N = 2$ SUSY Yang-Mills with supercharges
+\[
+\{Q^I, Q^J\} \sim P_\mu \gamma^\mu \delta^{IJ}
+\]
+\me{There was a discussion of the $\grp{U}(2)$ symmetry acting on the supercharge indices that I did not understand.}
+
+There are two important properties of this action:
+\begin{enumerate}
+    \item The partition function is independent of the metric: $g_{\mu \nu} \mapsto g_{\mu \nu} + \delta g_{\mu \nu}$ gives $\psi \mapsto \psi + \delta \psi$, $\delta S = \{Q, \delta \psi\}$
+    \item The theory is exact at the one-loop level: Small changes in the coupling constant cancel out.
+    This means we really only need to look at the semiclassical limit.
+\end{enumerate}
+The second is an example of ``localization:'' the path integrals localize to some finite-dimensional subspace and become ordinary integrals.
+The saddle points of the action are the instantons $F_{\mu \nu}^+ = 0$.
+\me{There was a discussion of the moduli space of solutions that I did not follow.}
+
+Next time we discuss BSRT-BV quantization.
+There's also a BFV (Hamiltonian) formalism, but we stick to BV (Lagrangian.)
+This is for three reasons:
+\begin{enumerate}
+    \item Allows us to deal with gauge symmetries that don't strictly form a Lie algebra
+    \item Gives a (better) proof of renormalizibility of Yang-Mills (BRST isn't enough)
+    \item Lets us look at the structure of anomalies
+\end{enumerate}

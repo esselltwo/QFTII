@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin = 1in]{geometry}
+
+\usepackage{amsmath,amsfonts,amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+
+\begin{document}
+\textsc {Self-dual renormalization group analysis of the Potts models} by Horn, Karliner and Yankielowicz.
+Idea: Many renormalization group approaches rely on sending the coupling parameter $g$ to $0$ or $\infty$, which is a problem if you're interested in a critical point at a different scale ($g = 1$.)
+Here they instead use a self-dual approach.
+
+\begin{definition}
+The Potts model $P(N)$ (here $N$ is a positive integer) is defined by the Hamiltonian
+\[
+-H = \frac{\varepsilon}{N} \sum_i \sum_{n=1}^N P_i^n + \frac{\Delta}{N} \sum_i \sum_{n=1}^N Q_i^{-n} Q_{i+1}^n
+\]
+on a one-dimensional lattice indexed by $i$.
+Each lattice point has an $N$-dimensional Hilbert space $\ket{0} \cdots \ket{N-1}$ (labels mod $N$) of states with the action of $P$ and $Q$ given by
+\begin{align*}
+P \ket n &= \zeta^n \ket n\\
+Q^\dagger \ket n &= \ket{n+1}
+\end{align*}
+where $\zeta = \exp(2 \pi i /N)$.
+These are unitary operators satisfying
+\[
+P^N_i = Q^N_i = 1, \quad P_i^\dagger Q_i P_i = \zeta Q_i
+\]
+for each $i$.
+\end{definition}
+There are similar operators $R$ and $S$ defined on the links of the lattice by
+\[
+P_i = S_{i-}^\dagger S_{i+}, \quad Q_i^\dagger Q_{i+1} = R_{i+}
+\]
+where $i+$ ($i-$) is the link to the left (right) of $i$.
+
+On an open lattice $H$ can be rewritten as
+\[
+-H = \frac{\Delta}{N} \sum_i \sum_{n=1}^N R_{i+}^n + \frac{\varepsilon}{N} \sum_{n=1}^N S_{i-}^{-n} S_{i+}^n 
+\]
+This is dual (on an open lattice) to the original expression under $\varepsilon \leftrightarrow \Delta$.
+Since only the relative strength $g = \varepsilon / \Delta$ will be relevant to the physics, we talk instead about a coupling inversion $g \leftrightarrow g^{-1}$.
+
+\end{document}

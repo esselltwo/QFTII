@@ -10,6 +10,7 @@
 \newcommand{\ket}[1]{\left | #1 \right \rangle}
 
 \begin{document}
+\section{Introduction}
 \textsc {Self-dual renormalization group analysis of the Potts models} by Horn, Karliner and Yankielowicz.
 Idea: Many renormalization group approaches rely on sending the coupling parameter $g$ to $0$ or $\infty$, which is a problem if you're interested in a critical point at a different scale ($g = 1$.)
 Here they instead use a self-dual approach.
@@ -44,5 +45,45 @@ On an open lattice $H$ can be rewritten as
 \]
 This is dual (on an open lattice) to the original expression under $\varepsilon \leftrightarrow \Delta$.
 Since only the relative strength $g = \varepsilon / \Delta$ will be relevant to the physics, we talk instead about a coupling inversion $g \leftrightarrow g^{-1}$.
+
+It is known that the Potts model has a second-order phase transition at $\varepsilon = \Delta$ for $N \le 4$ and a first-order one for $N > 4$.
+
+\section{Renormalization}
+\subsection{$N=2$}
+We focus on the case $N=2$ because we can use Pauli matrices.
+The idea is to renormalize by considering a pair of adjacent cells as a single block, in which case the Hamiltonian can be written as
+\[
+2H = \sum_i h_1(i) + \sum_i h_2(i,i+1)
+\]
+where $h_1, h_2$ are \emph{self-dual} under $g \mapsto g^{-1}$.
+We then connect only the lowest energy eigenstates of $h_1, h_2$ in the new Hamiltonian.
+The resulting renomalization group equations are
+\begin{align*}
+\bar \varepsilon &= - \varepsilon \cos 2 \theta\\
+\bar \Delta &= \Delta \sin 2 \theta\\
+\end{align*}
+where
+\[
+\tan \theta = \frac{\Delta}{\sqrt{\varepsilon + \Delta}-\varepsilon}
+\]
+This gives
+\[
+\bar g = g^2
+\]
+which is exactly what we wanted, because we're looking for the critical point at $g = g_c = 1$.
+The critical index is given by
+\[
+\frac{\partial \bar g }{\partial g} = 2^{1/\nu}
+\]
+so $\nu = 1$, which is the expected result.
+\subsection{$N=3$}
+Essentially the same procedure applies, but the renormalization equations are now
+\begin{align*}
+\bar \varepsilon &= \varepsilon \left ( 1- \frac{3}{2} \sin^2 \theta \right)\\
+\bar \Delta &= \Delta \sin \theta \left(\frac{1}{2} \sin q + \sqrt 2 \cos \theta \right)\\
+\bar d &= 2d + E_1
+\end{align*}
+where $d$ is a parameter appearing in the block Hamiltonian that starts as $\Delta + \varepsilon$.
+
 
 \end{document}

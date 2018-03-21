@@ -1,0 +1,35 @@
+%!TeX root = ../temp.tex
+\section*{Lecture 15, 20/03/2018}
+Today we discuss the BRST-BV formalism.
+Recall that previously we worked with a BRST charge $Q$, $Q^2$, whose cohomology gives the physical states.
+This can result in some complications (ghosts, ghosts for ghosts, etc.) but the point is to reduce the redundancy arising from gauge transformations.
+
+We will now introduce new concepts: for each field there will be an antifield of opposite statistics and ghost number, which are necessary if the symmetry algebra is \emph{open.} (What that means will be discussed.)
+There will also be an antibracket $(\,,\,)$ generalizing the Poisson bracket and pairing bosons and fermions, and a second-order operator $\Delta$.
+
+Applications:
+\begin{enumerate}
+    \item Gauge theories where FP quantization doesn't work, like when the symmetry algebra is open:
+    \[
+    [\delta_\alpha, \delta_\beta] = f_{\alpha \beta}^\gamma(\phi) \delta_\gamma + \text{EoM}(\phi)
+    \]
+    This is complicated because the equations of motion know about the dynamics.
+    \item Even in $3+1$ dimensional Yang-Mills it's hard to prove renormalizibility to all loop orders with just BRST.
+    \item Lets you deal with anomalies in symmetries, both local and gauge.
+    Has something to do with cohomology.
+    For example, the chiral anomaly of the standard model is one-loop exact, and the proof doesn't really work unless you have BRST-BV. See Weinberg Chapter 22, Volume 2.
+\end{enumerate}
+
+What is an \emph{open} symmetry algebra?
+Let's suppose we have an action
+\[
+S_0 = \int d^D x \mathcal{L}_0 (\phi^i, \partial_\mu \phi^i, \dots, \partial_{\mu_1} \cdots \partial_{\mu_k} \phi^i),
+\]
+which will then have equations of motion
+\[
+\frac{\delta \mathcal{L}_0}{\delta \phi^i(x)} = 0,
+\]
+which is to say
+\[
+\frac{\partial \mathcal{L}_0}{\partial \phi^i} - \partial_\mu \frac{\partial \mathcal{L}_0}{\partial (\partial_\mu\phi^i)} +  \partial_\mu  \partial_\nu \frac{\partial \mathcal{L}_0}{\partial (\partial_\mu \partial_\nu \phi^i)} - \cdots
+\]

@@ -1,4 +1,4 @@
-%!TeX root = ../temp.tex
+%!TeX root = ../main.tex
 \section*{Lecture 16, 22/03/2018}
 Today: More about the BRST-BV formalism.
 Recall that we made a choice of generating set $G$ of symmetries giving the Noether identities.
@@ -34,7 +34,7 @@ We therefore \emph{define} covariant phase space $\Sigma$ to be the set of all c
 (See Figure \ref{fig:phase-space}.)
 
 \begin{figure}[h]
-% \centering\includegraphics[width=2in]{fig.pdf}
+\centering\includegraphics{fig/phase-space.pdf}
 \caption{A diagram of various phase-space reductions.}
 \label{fig:phase-space}
 \end{figure}
@@ -75,7 +75,7 @@ Define \emph{vertical vectors} to be vectors on $\Sigma$ tangent to the $G$-orbi
 Then we can define $d$ by (arguments vertical vectors)
 \begin{align*}
 dF(X) &= \frac{\delta}{\delta X}F\\
-d \alpha(X,Y) = 0 - \mathcal{L}_Y \alpha(x) + \mathcal{L}_X \alpha(Y) + \alpha([X,Y]),
+d \alpha(X,Y) &= 0 - \mathcal{L}_Y \alpha(x) + \mathcal{L}_X \alpha(Y) + \alpha([X,Y]),
 \end{align*}
 and this will be the BRST charge.
 
@@ -109,3 +109,26 @@ The antibracket satisfies:
     \item Super-Jacobi identity
 \end{enumerate}
 and if we choose $S$ so that $\operatorname{gh} \# S = 0$, $\epsilon S = 0$, $(S,S) =0$, then it will preserve the cohomology.
+
+These requirements are the \emph{master equation}, and the solution will be
+\[
+S = \sum_{m \ge 0} S^{(m)}.
+\]
+Facts about $S$:
+\begin{itemize}
+    \item $S^{(0)}$ is just the action
+    \item $(\phi_i^*,S(\phi_i)) = \delta \phi_i^*$
+    \item $S^{(1)} = \phi_i^* R_\alpha^i c^\alpha$
+\end{itemize}
+
+The next step is gauge-fixing.
+We have antighosts $b_A, B_A; b_A^*, B_A^*$.
+We write our fields more compactly as $\phi^{\mathfrak{A}} = (\phi^i, c^\alpha, b_A, B_A)$ and $\phi_{\mathfrak{A}}^* = (\phi_i^*, \dots)$, which we can even combine together as $\mathcal{Z}^{\mathfrak{A}} = (\phi^{\mathfrak{A}}, \phi_{\mathfrak{B}}^*)$.
+Here $\mathfrak{A}$ can take $2N$ values.
+The antibracket is
+\[
+(A,B) = \frac{\delta^R A}{\delta \mathcal{Z}^{\mathfrak{A}}} \zeta^{\mathfrak{AB}} \frac{\delta^L B}{\delta \mathcal{Z}^{\mathfrak{B}}},
+\]
+where $\zeta^{\mathfrak{AB}}$ is just the standard symplectic matrix in the Fraktur indices.
+
+We will therefore want to choose $N$ gauge-fixing conditions $\Omega^{\mathfrak{A}}(\mathcal{Z}) = 0$, which will need to satisfy $(\Omega^\mathfrak{A}, \Omega^\mathfrak{B}) = 0$ to make things work.

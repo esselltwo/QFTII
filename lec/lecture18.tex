@@ -1,0 +1,58 @@
+%!TeX root = ../main.tex
+\section*{Lecture 18, 12/04/2018}
+Review of last time.
+\me{There was a discussion of the topology of surfaces and of various ways to compute the Euler characteristic.}
+
+Recall that using the new coupling constant $\lambda = gN^2$, the order of each diagram is
+\[
+\lambda^{P-V} N^{V-P+L} = \lambda^{P-V}N^\chi
+\]
+where $P$ is the number of propagators/edges, $V$ is the number of vertices, $L$ is the number of loops, and $\chi$ is the Euler characteristic of the surface associated to the ribbon graph diagram.
+The partition function is then
+\[
+\mathcal Z = \sum_{g =0}^\infty \left( \frac{1}{N} \right)^{2g-2} \sum_{\text{diagrams of genus } g} f(\lambda)
+\]
+for some functions $f$ depending only on the coupling $\lambda$.
+This type of formula will hold for \emph{any} quantum theory of matrices.
+\me{I think this may just be a statement about sums over ribbon graphs.}
+
+This gives a connection to string theory, where our provisional definition of a string theory is something where the Feynman diagrams are ribbon graphs.
+In order to interpret the above sum, we'd like to view it as one.
+Unfortunately, very few string theories are known; basically the only one is superstring theory in 10 dimensions.
+That has a bunch of supersymmetries, so where do they show up in the large $N$ theory?
+
+More generally, general QFTs are hard, so it may be overly ambitious to try this with them.
+Instead we look at CFTs.
+\me{There was a discussion of fixed points of the RG flow that I didn't follow.}
+This will turn out to work because there's a connection to supersymmetry.
+Both theories are representations of $SO(4,2)$, the symmetries of $\mathbb{R}^{3,1}$.
+How does it act on the string theory side?
+
+We postulate that the genus-$g$ contribution to the partition function is of the form
+\[
+F_g(\lambda) = \int \mathcal D (\text{fields}) e^{i S}
+\]
+where $S$ is an integral of the fields over the ``string worldsheet,'' which is just a surface $\Sigma$ of genus $g$.
+We could have a ``cartoon'' Polyakov action
+\[
+ S = d^2 \sigma \partial_\alpha x^\mu \partial_\alpha x^\nu \eta_{\mu \nu},
+\]
+where $\sigma$ is the worldsheet coordinate indexed by $\alpha$ and $\mu$ is the spacetime coordinate; the fields are just a map $x^\mu : \Sigma \to M$ for $M$ a $4$-manifold.
+
+This manifold isn't high-dimensional enough to have isometry group $SO(4,2)$, so we pass to a new spacetime $\hat M$ by adding a dimension $u$.
+The metric will then be
+\[
+ds^2 = w(u)^2 \left( dx^\mu dx^\nu \eta_{\mu \nu} + du^2 \right),
+\]
+where $w(u)$ is the \emph{warp factor.}
+To get conformal symmetry, we then have to set $w^2 = 1/u^2$.
+But we now have anti-de Sitter space in $4+1$ dimensions, in Poincar\'e patch coordinates.
+Recall that anti-de Sitter space is the maximally symmetric solution to the Einstein equations with negative cosmological constant.
+
+$SO(4,2)$ has 32 generators (supercharges) which we can think of as corresponding to four Majorana fermions.
+They can be rotated into each other, so we get additional bosonic symmetries in the form of an $SU(4)$ factor.
+This corresponds with taking the product of $\hat M$ with $S^5$.
+
+We have seen that there's a connection between a large $N$ theory of matrices and string theory.
+We will later see that if the matrix theory has a local energy-momentum tensor, the string theory will have a gravity-like excitation.
+\me{There was as further discussion of the relationship between the conformal dimension of the CFT and the mass in the AdS side but I did not follow the details.}

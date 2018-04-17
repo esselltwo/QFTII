@@ -1,0 +1,71 @@
+%!TeX root = ../main.tex
+\section*{Lecture 19, 17/04/2018}
+Today: more on large $N$ and AdS/CFT
+
+To get CFT out of large $N$, we add conformal symmetry and therefore look for RG fixed points.
+In $3+1$ dimensions we need symmetry group $SO(4,2)$, which then forces spacetime to be $5$-dimensional.
+The resulting metric is 
+\[
+ds^2 = L^2 \left( \frac{d \vc x d \vc x}{u^2} = \frac{du^2}{u^2}\right).
+\]
+One reason this is reasonable is that this spacetime should be foliated by regular spacetime in the $u$ direction.
+Radial evolution in this anti-de Sitter spacetime should correspond to the RG flow.
+Here $L$ is the radius.
+
+There is also a ``UV-IR'' duality, in that the UV limit of the CFT corresponds to the IR limit of gravity.
+
+Another question is how to deal with this correspondence globally in AdS space, instead of just the part with our particular coordinate system.
+The boundary of the whole spacetime is $S^3 \times \mathbb{R}$, whose metric is determined only up to conformal scalings.
+We will not discuss this much.
+
+To see that the AdS theory actually has gravity:
+Consider the partition function
+\[
+ \mathcal Z_{\text{bulk}} \left [\left . \phi(\vc x, u) \right |_{u = 0 \text{ on } \partial \hat{\mathcal M}} = \phi_0 (\vc x) \right ] = \left \langle \exp \int d^4x\, \phi_0(\vc x) \mathcal O(\vc x) \right \rangle,
+\]
+where we have identified the boundary values of the bulk fields with the source term.
+
+For example: consider a scalar field $\phi$ of mass $m$ in the bulk.
+Then
+\[
+S = \frac{1}{2} \int d^4x \, du \, \sqrt{-G} G^{MN} \partial_M \phi \partial_N \phi - \frac{1}{2} m^2 \phi^2,
+\]
+where $G^{MN}$ is the AdS metric from before.
+The classical equations of motion are more complicated because spacetime is no longer flat.
+Near $u = 0$, we assume $\phi \sim u^\alpha$ for large $\phi$.
+We can then check that
+\[
+\alpha (\alpha -4) - m^2 L^2 = 0,
+\]
+so there are two solutions $\alpha_\pm = 2 \pm \sqrt{4 + m^2 L^2}$.
+$\alpha_-$ always dominates near the boundary, and $\alpha_+$ always decays.
+We thus get $m^2 L^2 \ge 4$, the Breitenlohner-Freedman bound.
+Claim: For $\phi$, the associated operator $\mathcal O$ has conformal dimension $\Delta = 2 + \sqrt{4 + m^2 L^2}$.
+
+The expectation value is UV divergent, which corresponds to an IR divergence in the bulk partition function in the AdS side.
+We can fix this divergence by dcurring things off close to the boundary, in which case
+\[
+\phi(\vc x, u)|_{u = \varepsilon} = \varepsilon^\alpha - \phi_0^R(\vc x),
+\]
+and we can extract $\phi_0^R$ as the renormalized field.
+
+What are the scaling dimensions under the scaling $\vc x \to \lambda \vc x$, $u \to \lambda u$?
+We can compute $[\phi^R] = \alpha_-$, $[\mathcal O] = 4 - \alpha_- = \alpha_+$.
+At $m = 0$ we get $[\mathcal O] = 4$.
+How many interesting dimension 4 CFT operators do we know?
+\me{Something to do with 4 dimensional SUSY Yang-Mills.}
+In particular there is a massless dilaton-like field in the bulk.
+
+Recall that the scaling dimension of $T^{\mu \nu}$ is $4$, so this should correspond to a mass-zero spin-2 field in the bulk, i.e.~a graviton.
+
+In the limit of classical gravity,
+\[
+W_{\text{eff}} = S_{\text{on-shell}}[\phi_0^R]_{\text{gravity}}.
+\]
+The on-shell part is
+\[
+S_{\text{on-shell}} = \frac{1}{16 \pi G_n} \int d^4x\, \sqrt{-g} \mathcal L
+\]
+where we take only the IR-regular or $\log \varepsilon$ part of the Lagrangian.
+
+\me{At this point my physics knowledge started to become lacking and my notes were no longer useful.}
